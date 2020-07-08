@@ -1,5 +1,6 @@
 public class HelperStuff {
     static String genId(){
+        // erzeuge einen zufälligen 64 Zeichen langen ID-String
         String tmp = "";
         for(int i = 0; i < 64; i++){
             // r liegt zwischen 0 und 61 da 0<= Math.random<1
@@ -18,7 +19,6 @@ public class HelperStuff {
 
             tmp = tmp + (char)r;
         }
-
         return tmp;
     }
 }
