@@ -27,3 +27,4 @@ hs_err_pid*
 # some intelliJ IDEA stuff added by Ole
 swe_phase2.iml
 /.idea
+/out
