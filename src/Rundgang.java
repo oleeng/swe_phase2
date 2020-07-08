@@ -32,7 +32,7 @@ public class Rundgang {
     }
 
     public void addMoebel(Modellmoebel moebelstueck){
-        moebel.add(moebelstueck);
+        this.moebel.add(moebelstueck);
     }
 
     public void printAllMoebel(){

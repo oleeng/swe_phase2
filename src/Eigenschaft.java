@@ -14,4 +14,9 @@ public class Eigenschaft {
     public String getWert() {
         return value;
     }
+
+    public void print(){
+        System.out.println("Name: "+key);
+        System.out.println("Wert: "+value);
+    }
 }

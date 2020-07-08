@@ -20,4 +20,10 @@ public class Bild {
     public String getDatenBild() {
         return datenBild;
     }
+
+    public void zeigeBild(){
+        System.out.println("Id: "+id);
+        System.out.println("Beschreibung: "+beschreibung);
+        System.out.println("Daten: "+datenBild);
+    }
 }
