@@ -4,13 +4,11 @@ public class Rundgang {
     private String id;
     private String audiokommentar;
     private String dimensionen;
-    private String datenRundgang;
     private ArrayList<Modellmoebel> moebel = new ArrayList<Modellmoebel>();
 
-    public Rundgang(String audiokommentar, String dimensionen, String datenRundgang){
+    public Rundgang(String audiokommentar, String dimensionen){
         this.audiokommentar = audiokommentar;
         this.dimensionen = dimensionen;
-        this.datenRundgang = datenRundgang;
         this.id = HelperStuff.genId();
     }
 
@@ -19,6 +17,7 @@ public class Rundgang {
     }
 
     public void playAudiokommentar(){
+        System.out.println("Gebe den Audiokommentar wieder...");
         System.out.println(audiokommentar);
     }
 
@@ -27,8 +26,7 @@ public class Rundgang {
     }
 
     public void starteRundgang() {
-        System.out.println("Starte Rundgang....");
-        System.out.println(datenRundgang);
+        System.out.println("Starte Rundgang (id: "+id+")");
     }
 
     public void addMoebel(Modellmoebel moebelstueck){

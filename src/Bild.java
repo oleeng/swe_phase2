@@ -2,6 +2,7 @@ public class Bild {
     private String id;
     private String beschreibung;
     private String dateiformat;
+    // groesse in bytes
     private int dateigroesse;
 
     public Bild(String beschreibung, String dateiformat, int dateigroesse){
@@ -30,7 +31,7 @@ public class Bild {
     public void zeigeBild(){
         System.out.println("Id: "+id);
         System.out.println("Dateiformat: "+dateiformat);
-        System.out.println("Dateigröße: "+dateigroesse);
+        System.out.println("Dateigröße: "+dateigroesse+" Byte");
         System.out.println("Beschreibung: "+beschreibung);
     }
 }

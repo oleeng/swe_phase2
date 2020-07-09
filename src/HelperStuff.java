@@ -8,16 +8,16 @@ public class HelperStuff {
 
             if(r<26){
                 // A - Z
-                r = r+65;
-            }else if(r<52){
+                r += 65;
+            }
+            else if(r<52){
                 // a - z
-                r  = r+71;
+                r += 71;
             }else{
                 // 0 - 9
-                r = r-4;
+                r -= 4;
             }
-
-            tmp = tmp + (char)r;
+            tmp += (char)r;
         }
         return tmp;
     }

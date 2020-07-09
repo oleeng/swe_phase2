@@ -16,7 +16,6 @@ public class Eigenschaft {
     }
 
     public void print(){
-        System.out.println("Name: "+key);
-        System.out.println("Wert: "+value);
+        System.out.println("Name: "+key+", Wert: "+value);
     }
 }

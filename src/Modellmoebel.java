@@ -2,12 +2,10 @@ public class Modellmoebel {
     private String id;
     private String beschreibung;
     private String groesse;
-    private String datenMoebel;
 
-    public Modellmoebel(String beschreibung, String groesse, String datenMoebel){
+    public Modellmoebel(String beschreibung, String groesse){
         this.beschreibung = beschreibung;
         this.groesse = groesse;
-        this.datenMoebel = datenMoebel;
         this.id = HelperStuff.genId();
     }
 
@@ -15,7 +13,6 @@ public class Modellmoebel {
         System.out.println("Möbel-ID: "+id);
         System.out.println("Beschreibung: "+beschreibung);
         System.out.println("Größe: "+groesse);
-        System.out.println("Daten: "+datenMoebel);
     }
 
     public String getId() {
@@ -28,9 +25,5 @@ public class Modellmoebel {
 
     public String getGroesse() {
         return groesse;
-    }
-
-    public String getDatenMoebel() {
-        return datenMoebel;
     }
 }
