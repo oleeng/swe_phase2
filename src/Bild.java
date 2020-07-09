@@ -1,11 +1,13 @@
 public class Bild {
     private String id;
     private String beschreibung;
-    private String datenBild;
+    private String dateiformat;
+    private int dateigroesse;
 
-    public Bild(String beschreibung, String datenBild){
+    public Bild(String beschreibung, String dateiformat, int dateigroesse){
         this.beschreibung = beschreibung;
-        this.datenBild = datenBild;
+        this.dateiformat = dateiformat;
+        this.dateigroesse = dateigroesse;
         this.id = HelperStuff.genId();
     }
 
@@ -17,13 +19,18 @@ public class Bild {
         return beschreibung;
     }
 
-    public String getDatenBild() {
-        return datenBild;
+    public String getDateiformat() {
+        return dateiformat;
+    }
+
+    public int getDateigroesse() {
+        return dateigroesse;
     }
 
     public void zeigeBild(){
         System.out.println("Id: "+id);
+        System.out.println("Dateiformat: "+dateiformat);
+        System.out.println("Dateigröße: "+dateigroesse);
         System.out.println("Beschreibung: "+beschreibung);
-        System.out.println("Daten: "+datenBild);
     }
 }
