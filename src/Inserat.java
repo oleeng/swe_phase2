@@ -50,6 +50,7 @@ public class Inserat {
         if(bilder.isEmpty()){
             System.out.println("keine Bilder vorhanden....");
         }else{
+            System.out.println("Das Inserat hat folgende Bilder:");
             for(Bild b: bilder){
                 b.zeigeBild();
                 System.out.println("-----------");
@@ -69,6 +70,7 @@ public class Inserat {
         if(eigenschaften.isEmpty()){
             System.out.println("keine Eigenschaften vorhanden...");
         }else{
+            System.out.println("Das Inserat hat folgende Eigenschaften:");
             for(Eigenschaft e: eigenschaften){
                 e.print();
                 System.out.println("-----------");
