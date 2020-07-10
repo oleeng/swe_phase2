@@ -5,7 +5,6 @@ public class Oberinserat implements InseratComposite {
     private String name;
     private ArrayList<InseratComposite> inserateComposite = new ArrayList<InseratComposite>();
 
-    private String[] stringFilterValues = {"Stadt"};
     private String[] zahlFilterValues = {"Größe", "Zimmerzahl"};
 
     public Oberinserat(String name){
@@ -48,10 +47,10 @@ public class Oberinserat implements InseratComposite {
                 int status;
 
                 for (Filter f: filter){
-                    if(Arrays.asList(stringFilterValues).contains(f.getName())){
-                        status = stringFilter(i.getStandort().getStadt(), f);
-                    }else if(Arrays.asList(zahlFilterValues).contains(f.getName())){
+                    if(Arrays.asList(zahlFilterValues).contains(f.getName())){
                         status = zahlFilter(i.getEigenschaft(f.getName()), f);
+                    }else if(i.getStandort().getValue(f.getName()) != null){
+                        status = stringFilter(i.getStandort().getValue(f.getName()), f);
                     }else{
                         System.out.println("Invalid Filtername: "+f.getName());
                         status = -1;

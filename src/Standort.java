@@ -2,10 +2,10 @@ public class Standort {
     private String land;
     private String bundesland;
     private String stadt;
-    private int plz;
+    private String plz;
     private String strasse;
 
-    public Standort(String land, String bundesland, String stadt, int plz, String strasse){
+    public Standort(String land, String bundesland, String stadt, String plz, String strasse){
         this.land = land;
         this.bundesland = bundesland;
         this.stadt = stadt;
@@ -25,12 +25,37 @@ public class Standort {
         return stadt;
     }
 
-    public int getPlz() {
+    public String getPlz() {
         return plz;
     }
 
     public String getStrasse() {
         return strasse;
+    }
+
+    public String getValue(String wert){
+        String ret;
+        switch (wert){
+            case "Stadt":
+                ret = stadt;
+                break;
+            case "Land":
+                ret = land;
+                break;
+            case "Bundesland":
+                ret = bundesland;
+                break;
+            case "PLZ":
+                ret = plz;
+                break;
+            case "Straße":
+                ret = strasse;
+                break;
+            default:
+                ret = null;
+                break;
+        }
+        return ret;
     }
 
     public void printKarte(){
