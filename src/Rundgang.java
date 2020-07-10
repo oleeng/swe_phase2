@@ -26,7 +26,7 @@ public class Rundgang {
     }
 
     public void starteRundgang() {
-        System.out.println("Starte Rundgang (id: "+id+")");
+        System.out.println("Starte Rundgang (id: "+id+")...");
     }
 
     public void addMoebel(Modellmoebel moebelstueck){

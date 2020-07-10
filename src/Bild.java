@@ -2,12 +2,14 @@ public class Bild {
     private String id;
     private String beschreibung;
     private String dateiformat;
+    private String path;
     // groesse in bytes
     private int dateigroesse;
 
-    public Bild(String beschreibung, String dateiformat, int dateigroesse){
+    public Bild(String beschreibung, String dateiformat, String path, int dateigroesse){
         this.beschreibung = beschreibung;
         this.dateiformat = dateiformat;
+        this.path = path;
         this.dateigroesse = dateigroesse;
         this.id = HelperStuff.genId();
     }
@@ -22,6 +24,10 @@ public class Bild {
 
     public String getDateiformat() {
         return dateiformat;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     public int getDateigroesse() {

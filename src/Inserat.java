@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Inserat {
+public class Inserat implements InseratComposite{
     private String id;
     private String beschreibung;
     private Standort standort;
     private Rundgang rundgang;
-    private ArrayList<Bild> bilder = new ArrayList<Bild>();
-    private ArrayList<Eigenschaft> eigenschaften = new ArrayList<Eigenschaft>();
+    private ArrayList<Bild> bilder = new ArrayList<>();
+    private HashMap<String, Double> eigenschaften = new HashMap<>();
 
     public Inserat(String beschreibung, Standort standort){
         this.beschreibung = beschreibung;
@@ -22,8 +23,15 @@ public class Inserat {
         this.bilder.add(bild);
     }
 
-    public void addEigenschaft(Eigenschaft eigenschaft){
-        this.eigenschaften.add(eigenschaft);
+    public void addEigenschaft(String name, Double wert){
+        eigenschaften.put(name, wert);
+    }
+
+    public Double getEigenschaft(String name) {
+        if(eigenschaften.get(name) == null){
+            return null;
+        }
+        return eigenschaften.get(name);
     }
 
     public String getId() {
@@ -58,23 +66,23 @@ public class Inserat {
         }
     }
 
-    public ArrayList<Eigenschaft> getEigenschaften() {
-        if(eigenschaften.isEmpty()){
-            return null;
-        }else{
-            return eigenschaften;
-        }
-    }
-
     public void printEigenschaften(){
         if(eigenschaften.isEmpty()){
             System.out.println("keine Eigenschaften vorhanden...");
         }else{
             System.out.println("Das Inserat hat folgende Eigenschaften:");
-            for(Eigenschaft e: eigenschaften){
-                e.print();
+            for(String e: eigenschaften.keySet()){
+                System.out.println("Name: "+e+", Wert: "+eigenschaften.get(e));
                 System.out.println("-----------");
             }
         }
+    }
+
+    @Override
+    public void print(int level) {
+        System.out.println(HelperStuff.padding(" ", level)+"+-----------------------------------------------");
+        System.out.println(HelperStuff.padding(" ", level)+"|"+"Inserat (id: "+id+")");
+        System.out.println(HelperStuff.padding(" ", level)+"|"+"Beschreibung: "+beschreibung);
+        System.out.println(HelperStuff.padding(" ", level)+"+-----------------------------------------------");
     }
 }

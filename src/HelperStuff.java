@@ -21,4 +21,8 @@ public class HelperStuff {
         }
         return tmp;
     }
+
+    static String padding(String string, int count){
+        return string.repeat(count);
+    }
 }
