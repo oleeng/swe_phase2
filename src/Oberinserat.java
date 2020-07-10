@@ -1,19 +1,22 @@
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Oberinserat implements InseratComposite {
     private String name;
     private ArrayList<InseratComposite> inserateComposite = new ArrayList<InseratComposite>();
 
+    private String[] stringFilterValues = {"Stadt"};
+    private String[] zahlFilterValues = {"Größe", "Zimmerzahl"};
+
     public Oberinserat(String name){
         this.name = name;
     }
 
-    public void addInserat(InseratComposite inserat){
+    public void add(InseratComposite inserat){
         this.inserateComposite.add(inserat);
     }
 
-    public void printAll(){
+    public void print(){
         print(0);
     }
 
@@ -28,7 +31,7 @@ public class Oberinserat implements InseratComposite {
     }
 
     public ArrayList<Inserat> suche(Filter... filter){
-        ArrayList<Inserat> ergebnisse = new ArrayList<Inserat>();
+        ArrayList<Inserat> ergebnisse = new ArrayList<>();
 
         for (InseratComposite inserat: inserateComposite){
             if( inserat instanceof Oberinserat){
@@ -42,24 +45,16 @@ public class Oberinserat implements InseratComposite {
                 // inserat ist ein einzelnes Inserat
                 Inserat i = (Inserat) inserat;
                 boolean erfuelltFilter = true;
-                boolean error = false;
-                int status = 99;
+                int status;
 
                 for (Filter f: filter){
-                    switch (f.getName()){
-                        case "Stadt":
-                            status = stringFilter(i.getStandort().getStadt(), f);
-                            break;
-                        case "Größe":
-                            status = zahlFilter(i.getEigenschaft("Größe"), f);
-                            break;
-                        case "Zimmerzahl":
-                            status = zahlFilter(i.getEigenschaft("Zimmerzahl"), f);
-                            break;
-                        default:
-                            System.out.println("Invalid Filtername: "+f.getName());
-                            status = -1;
-                            break;
+                    if(Arrays.asList(stringFilterValues).contains(f.getName())){
+                        status = stringFilter(i.getStandort().getStadt(), f);
+                    }else if(Arrays.asList(zahlFilterValues).contains(f.getName())){
+                        status = zahlFilter(i.getEigenschaft(f.getName()), f);
+                    }else{
+                        System.out.println("Invalid Filtername: "+f.getName());
+                        status = -1;
                     }
                     if(status == 0){
                         erfuelltFilter = false;

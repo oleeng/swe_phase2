@@ -78,6 +78,10 @@ public class Inserat implements InseratComposite{
         }
     }
 
+    public void print(){
+        print(0);
+    }
+
     @Override
     public void print(int level) {
         System.out.println(HelperStuff.padding(" ", level)+"+-----------------------------------------------");

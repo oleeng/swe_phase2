@@ -2,24 +2,22 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        // Ausgabe Hello World!
-
-        Oberinserat InserateContainer = new Oberinserat("Alle Inserate");
+        Oberinserat InserateContainer = new Oberinserat("Container");
         Oberinserat OberklasseHaus = new Oberinserat("Häuser");
         Oberinserat OberklasseWohnung = new Oberinserat("Wohnungen");
         Oberinserat OberklasseBungalow = new Oberinserat("Bungalows");
 
-        InserateContainer.addInserat(OberklasseHaus);
-        InserateContainer.addInserat(OberklasseWohnung);
-        InserateContainer.addInserat(OberklasseBungalow);
+        InserateContainer.add(OberklasseHaus);
+        InserateContainer.add(OberklasseWohnung);
+        InserateContainer.add(OberklasseBungalow);
 
         Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("DE", "NRW", "Berlin", 10629, "Mommsenstraße 5"));
         inserat1.addEigenschaft("Größe", 120.0);
         inserat1.addEigenschaft("Zimmerzahl", 3.0);
 
-        OberklasseWohnung.addInserat(inserat1);
+        OberklasseWohnung.add(inserat1);
 
-        InserateContainer.printAll();
+        InserateContainer.print();
 
         ArrayList<Inserat> suchergebnisse = InserateContainer.suche(
                 new Filter("Stadt", "Berlin", ""),
@@ -39,7 +37,7 @@ public class Main {
             System.out.println("Siehe Konsolenausgabe für Gründe");
         }else{
             for(Inserat inserat: suchergebnisse){
-                inserat.print(0);
+                inserat.print();
             }
         }
     }
