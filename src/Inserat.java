@@ -54,13 +54,13 @@ public class Inserat implements InseratComposite{
         }
     }
 
-    public void zeigeBilder(){
+    public void printBilder(){
         if(bilder.isEmpty()){
             System.out.println("keine Bilder vorhanden....");
         }else{
             System.out.println("Das Inserat hat folgende Bilder:");
             for(Bild b: bilder){
-                b.zeigeBild();
+                b.print();
                 System.out.println("-----------");
             }
         }
