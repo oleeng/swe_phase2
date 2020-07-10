@@ -19,8 +19,14 @@ public class Main {
         inserat2.addEigenschaft("Größe", 90.0);
         inserat2.addEigenschaft("Zimmerzahl", 4.0);
 
+        Inserat haus1 = new Inserat("Testhaus", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"));
+        haus1.addEigenschaft("Größe", 90.0);
+        haus1.addEigenschaft("Zimmerzahl", 4.0);
+
         OberklasseWohnung.add(inserat1);
         OberklasseWohnung.add(inserat2);
+
+        OberklasseHaus.add(haus1);
 
         InserateContainer.print();
 
