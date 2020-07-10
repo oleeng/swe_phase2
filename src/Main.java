@@ -15,13 +15,18 @@ public class Main {
         inserat1.addEigenschaft("Größe", 120.0);
         inserat1.addEigenschaft("Zimmerzahl", 3.0);
 
+        Inserat inserat2 = new Inserat("andere Wohnung", new Standort("DE", "NRW", "Bochum", 10629, "Mommsenstraße 5"));
+        inserat2.addEigenschaft("Größe", 90.0);
+        inserat2.addEigenschaft("Zimmerzahl", 4.0);
+
         OberklasseWohnung.add(inserat1);
+        OberklasseWohnung.add(inserat2);
 
         InserateContainer.print();
 
         ArrayList<Inserat> suchergebnisse = InserateContainer.suche(
                 new Filter("Stadt", "Berlin", ""),
-                new Filter("Größe", "100", "min"),
+                new Filter("Größe", "80", "min"),
                 new Filter("Größe", "150", "max"),
                 new Filter("Zimmerzahl", "2", "min")
         );
