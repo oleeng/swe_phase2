@@ -37,6 +37,7 @@ public class Bild {
     public void print(){
         System.out.println("Id: "+id);
         System.out.println("Dateiformat: "+dateiformat);
+        System.out.println("Path: "+path);
         System.out.println("Dateigröße: "+dateigroesse+" Byte");
         System.out.println("Beschreibung: "+beschreibung);
     }

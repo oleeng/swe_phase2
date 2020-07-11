@@ -24,12 +24,14 @@ public class Inserat implements InseratComposite{
         this.rundgang = rundgang;
     }
 
-    public void addBild(Bild bild){
-        this.bilder.add(bild);
+    public void addBilder(Bild... bild){
+        bilder.addAll(Arrays.asList(bild));
     }
 
-    public void addEigenschaft(String name, Double wert){
-        eigenschaften.put(name, wert);
+    public void addEigenschaften(Eigenschaft... eigenschaften){
+        for(Eigenschaft e: eigenschaften){
+            this.eigenschaften.put(e.getName(), e.getValue());
+        }
     }
 
     public void removeEigenschaft(String name){
@@ -91,15 +93,22 @@ public class Inserat implements InseratComposite{
         }
     }
 
+    @Override
     public void print(){
         print(0);
     }
 
     @Override
     public void print(int level) {
-        System.out.println(HelperStuff.padding(" ", level)+"+-----------------------------------------------");
-        System.out.println(HelperStuff.padding(" ", level)+"|"+"Inserat (id: "+id+")");
-        System.out.println(HelperStuff.padding(" ", level)+"|"+"Beschreibung: "+beschreibung);
-        System.out.println(HelperStuff.padding(" ", level)+"+-----------------------------------------------");
+        String padding = HelperStuff.padding(" ", level);
+        System.out.println(padding+"+-----------------------------------------------");
+        System.out.println(padding+"|"+"Inserat (id: "+id+")");
+        System.out.println(padding+"|"+"Beschreibung: "+beschreibung);
+        System.out.println(padding+"+-----------------------------------------------");
+    }
+
+    @Override
+    public Double getPreis() {
+        return eigenschaften.get("Preis");
     }
 }

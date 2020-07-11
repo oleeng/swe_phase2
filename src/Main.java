@@ -12,16 +12,22 @@ public class Main {
         InserateContainer.add(OberklasseBungalow);
 
         Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0);
-        inserat1.addEigenschaft("Größe", 120.0);
-        inserat1.addEigenschaft("Zimmerzahl", 3.0);
+        inserat1.addEigenschaften(
+                new Eigenschaft("Größe", 120.0),
+                new Eigenschaft("Zimmerzahl", 3.0)
+        );
 
         Inserat inserat2 = new Inserat("andere Wohnung", new Standort("DE", "NRW", "Bochum", "10629", "Mommsenstraße 5"), 300.0);
-        inserat2.addEigenschaft("Größe", 90.0);
-        inserat2.addEigenschaft("Zimmerzahl", 4.0);
+        inserat2.addEigenschaften(
+                new Eigenschaft("Größe", 90.0),
+                new Eigenschaft("Zimmerzahl", 4.0)
+        );
 
         Inserat haus1 = new Inserat("Testhaus", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 150000.0);
-        haus1.addEigenschaft("Größe", 90.0);
-        haus1.addEigenschaft("Zimmerzahl", 4.0);
+        haus1.addEigenschaften(
+                new Eigenschaft("Größe", 90.0),
+                new Eigenschaft("Zimmerzahl", 4.0)
+        );
 
         OberklasseWohnung.add(inserat1);
         OberklasseWohnung.add(inserat2);
@@ -32,6 +38,8 @@ public class Main {
 
         InserateContainer.print();
 
+        System.out.println(InserateContainer.getPreis()+"€");
+
         ArrayList<Inserat> suchergebnisse = InserateContainer.suche(
                 new Filter("Stadt", "Berlin", ""),
                 new Filter("Größe", "80", "min"),
@@ -39,11 +47,6 @@ public class Main {
                 new Filter("Zimmerzahl", "2", "min"),
                 new Filter("Preis", "1000", "max")
         );
-
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
 
         System.out.println("Suchergebnisse:");
         if(suchergebnisse == null){

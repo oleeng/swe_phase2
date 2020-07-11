@@ -16,9 +16,9 @@ public class Oberinserat implements InseratComposite {
     }
 
     public boolean remove(InseratComposite inserat){
+        boolean found = false;
         if(!inserateComposite.remove(inserat)){
             // inserat kannte in der Liste nicht gefunden werden
-            boolean found = false;
             for(InseratComposite i: inserateComposite){
                 if(i instanceof Oberinserat){
                     if(((Oberinserat) i).remove(inserat)){
@@ -27,13 +27,14 @@ public class Oberinserat implements InseratComposite {
                     }
                 }
             }
-            return found;
         }else{
             // inserat konnte gelöscht werden
-            return true;
+            found = true;
         }
+        return found;
     }
 
+    @Override
     public void print(){
         print(0);
     }
@@ -42,7 +43,7 @@ public class Oberinserat implements InseratComposite {
     public void print(int level) {
         for (InseratComposite inserat: inserateComposite){
             if(inserat instanceof Oberinserat){
-                System.out.println("-".repeat(level)+"Inseratcontainer: "+((Oberinserat) inserat).name);
+                System.out.println(HelperStuff.padding("-", level)+"Inseratcontainer: "+((Oberinserat) inserat).name);
             }
             inserat.print(level+1);
         }
@@ -120,5 +121,14 @@ public class Oberinserat implements InseratComposite {
             }
         }
         return 1;
+    }
+
+    @Override
+    public Double getPreis() {
+        Double gesamtpreis = 0.0;
+        for(InseratComposite i: inserateComposite){
+            gesamtpreis += i.getPreis();
+        }
+        return gesamtpreis;
     }
 }
