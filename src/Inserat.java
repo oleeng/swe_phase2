@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Inserat implements InseratComposite{
@@ -9,10 +10,14 @@ public class Inserat implements InseratComposite{
     private ArrayList<Bild> bilder = new ArrayList<>();
     private HashMap<String, Double> eigenschaften = new HashMap<>();
 
-    public Inserat(String beschreibung, Standort standort){
+    private String[] plichtEigenschaften = {"Preis"};
+
+    public Inserat(String beschreibung, Standort standort, Double preis){
         this.beschreibung = beschreibung;
         this.standort = standort;
         this.id = HelperStuff.genId();
+
+        eigenschaften.put("Preis", preis);
     }
 
     public void addRundgang(Rundgang rundgang){
@@ -25,6 +30,14 @@ public class Inserat implements InseratComposite{
 
     public void addEigenschaft(String name, Double wert){
         eigenschaften.put(name, wert);
+    }
+
+    public void removeEigenschaft(String name){
+        if(Arrays.asList(plichtEigenschaften).contains(name)){
+            System.out.println("Du kannst die Eigenschaft "+name+" nicht löschen...");
+        }else{
+            eigenschaften.remove(name);
+        }
     }
 
     public Double getEigenschaft(String name) {

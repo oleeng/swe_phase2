@@ -5,7 +5,7 @@ public class Oberinserat implements InseratComposite {
     private String name;
     private ArrayList<InseratComposite> inserateComposite = new ArrayList<InseratComposite>();
 
-    private String[] zahlFilterValues = {"Größe", "Zimmerzahl"};
+    private String[] FilterValues = {"Größe", "Zimmerzahl", "Preis"};
 
     public Oberinserat(String name){
         this.name = name;
@@ -13,6 +13,25 @@ public class Oberinserat implements InseratComposite {
 
     public void add(InseratComposite inserat){
         this.inserateComposite.add(inserat);
+    }
+
+    public boolean remove(InseratComposite inserat){
+        if(!inserateComposite.remove(inserat)){
+            // inserat kannte in der Liste nicht gefunden werden
+            boolean found = false;
+            for(InseratComposite i: inserateComposite){
+                if(i instanceof Oberinserat){
+                    if(((Oberinserat) i).remove(inserat)){
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            return found;
+        }else{
+            // inserat konnte gelöscht werden
+            return true;
+        }
     }
 
     public void print(){
@@ -47,7 +66,7 @@ public class Oberinserat implements InseratComposite {
                 int status;
 
                 for (Filter f: filter){
-                    if(Arrays.asList(zahlFilterValues).contains(f.getName())){
+                    if(Arrays.asList(FilterValues).contains(f.getName())){
                         status = zahlFilter(i.getEigenschaft(f.getName()), f);
                     }else if(i.getStandort().getValue(f.getName()) != null){
                         status = stringFilter(i.getStandort().getValue(f.getName()), f);
