@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Rundgang {
     private String id;
@@ -29,8 +30,8 @@ public class Rundgang {
         System.out.println("Starte Rundgang (id: "+id+")...");
     }
 
-    public void addMoebel(Modellmoebel moebelstueck){
-        this.moebel.add(moebelstueck);
+    public void addMoebel(Modellmoebel... moebelstueck){
+        this.moebel.addAll(Arrays.asList(moebelstueck));
     }
 
     public void printAllMoebel(){

@@ -7,9 +7,7 @@ public class Main {
         Oberinserat OberklasseWohnung = new Oberinserat("Wohnungen");
         Oberinserat OberklasseBungalow = new Oberinserat("Bungalows");
 
-        InserateContainer.add(OberklasseHaus);
-        InserateContainer.add(OberklasseWohnung);
-        InserateContainer.add(OberklasseBungalow);
+        InserateContainer.add(OberklasseHaus, OberklasseWohnung, OberklasseBungalow);
 
         Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0);
         inserat1.addEigenschaften(
@@ -29,10 +27,7 @@ public class Main {
                 new Eigenschaft("Zimmerzahl", 4.0)
         );
 
-        OberklasseWohnung.add(inserat1);
-        OberklasseWohnung.add(inserat2);
-
-        OberklasseHaus.add(haus1);
+        OberklasseWohnung.add(inserat1, inserat2, haus1);
 
         InserateContainer.remove(haus1);
 

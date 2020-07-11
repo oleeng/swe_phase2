@@ -11,8 +11,8 @@ public class Oberinserat implements InseratComposite {
         this.name = name;
     }
 
-    public void add(InseratComposite inserat){
-        this.inserateComposite.add(inserat);
+    public void add(InseratComposite... inserat){
+        this.inserateComposite.addAll(Arrays.asList(inserat));
     }
 
     public boolean remove(InseratComposite inserat){

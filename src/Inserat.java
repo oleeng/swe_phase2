@@ -76,7 +76,6 @@ public class Inserat implements InseratComposite{
             System.out.println("Das Inserat hat folgende Bilder:");
             for(Bild b: bilder){
                 b.print();
-                System.out.println("-----------");
             }
         }
     }
@@ -88,7 +87,6 @@ public class Inserat implements InseratComposite{
             System.out.println("Das Inserat hat folgende Eigenschaften:");
             for(String e: eigenschaften.keySet()){
                 System.out.println("Name: "+e+", Wert: "+eigenschaften.get(e));
-                System.out.println("-----------");
             }
         }
     }
