@@ -1,9 +1,12 @@
 public class Bild {
+    /*
+    Die Klasse Bild repräsentiert ein Bild.
+    Ein Bild verfügt über eine id eine Beschreibung, ein Dateiformat, einen Path und eine Größe in Bytes
+    */
     private String id;
     private String beschreibung;
     private String dateiformat;
     private String path;
-    // groesse in bytes
     private int dateigroesse;
 
     public Bild(String beschreibung, String dateiformat, String path, int dateigroesse){
@@ -15,30 +18,35 @@ public class Bild {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getBeschreibung() {
-        return beschreibung;
+        return this.beschreibung;
     }
 
     public String getDateiformat() {
-        return dateiformat;
+        return this.dateiformat;
     }
 
     public String getPath() {
-        return path;
+        return this.path;
     }
 
     public int getDateigroesse() {
-        return dateigroesse;
+        return this.dateigroesse;
     }
 
     public void print(){
-        System.out.println("Id: "+id);
-        System.out.println("Dateiformat: "+dateiformat);
-        System.out.println("Path: "+path);
-        System.out.println("Dateigröße: "+dateigroesse+" Byte");
-        System.out.println("Beschreibung: "+beschreibung);
+        System.out.println("Id: "+this.id);
+        System.out.println("Dateiformat: "+this.dateiformat);
+        System.out.println("Path: "+this.path);
+        System.out.println("Dateigröße: "+this.dateigroesse+" Byte");
+        System.out.println("Beschreibung: "+this.beschreibung);
+    }
+
+    public void anzeigen(){
+        System.out.println("Hier wird das Bild angezeigt");
+        HelperStuff.printFile(this.path);
     }
 }

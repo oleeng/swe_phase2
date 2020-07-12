@@ -35,22 +35,23 @@ public class Main {
 
         System.out.println(InserateContainer.getPreis()+"€");
 
-        ArrayList<Inserat> suchergebnisse = InserateContainer.suche(
-                new Filter("Stadt", "Berlin", ""),
-                new Filter("Größe", "80", "min"),
-                new Filter("Größe", "150", "max"),
-                new Filter("Zimmerzahl", "2", "min"),
-                new Filter("Preis", "1000", "max")
+        Oberinserat suchergebnisse = InserateContainer.suche(
+                new Filter("Stadt", "Berlin"),
+                new Filter("Größe", 80.0, "min"),
+                new Filter("Größe", 150.0, "max"),
+                new Filter("Zimmerzahl", 2.0, "min"),
+                new Filter("Preis", 1000.0, "max")
         );
+
+        //Bild b = new Bild("a", "png", "C:\\Users\\Ole\\Desktop\\gitRepos\\swe_phase2\\src\\img.txt", 100);
+        //b.anzeigen();
 
         System.out.println("Suchergebnisse:");
         if(suchergebnisse == null){
             System.out.println("Fehlerhafte Filter");
             System.out.println("Siehe Konsolenausgabe für Gründe");
         }else{
-            for(Inserat inserat: suchergebnisse){
-                inserat.print();
-            }
+            suchergebnisse.print();
         }
     }
 }

@@ -10,9 +10,11 @@ public class Modellmoebel {
     }
 
     public void print(){
-        System.out.println("Möbel-ID: "+id);
-        System.out.println("Beschreibung: "+beschreibung);
-        System.out.println("Größe: "+groesse);
+        System.out.println("+-----------------------------------------------");
+        System.out.println("|Möbel-ID: "+id);
+        System.out.println("|Beschreibung: "+beschreibung);
+        System.out.println("|Größe: "+groesse);
+        System.out.println("+-----------------------------------------------");
     }
 
     public String getId() {

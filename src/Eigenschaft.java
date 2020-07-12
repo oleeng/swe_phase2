@@ -1,17 +1,29 @@
 public class Eigenschaft {
     private String name;
-    private Double value;
+    private String value;
+    private String type;
+
+    public Eigenschaft(String name, String value){
+        this.name = name;
+        this.value = value;
+        this.type = "String";
+    }
 
     public Eigenschaft(String name, Double value){
         this.name = name;
-        this.value = value;
+        this.value = String.valueOf(value);
+        this.type = "Double";
     }
 
-    public Double getValue() {
-        return value;
+    public String getValue() {
+        return this.value;
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public String getType() {
+        return this.type;
     }
 }

@@ -1,18 +1,24 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Oberinserat implements InseratComposite {
     private String name;
-    private ArrayList<InseratComposite> inserateComposite = new ArrayList<InseratComposite>();
+    private ArrayList<InseratComposite> inserateComposite = new ArrayList<>();
 
-    private String[] FilterValues = {"Größe", "Zimmerzahl", "Preis"};
+    private HashMap<String, String> erlaubteFilter = new HashMap<>();
 
     public Oberinserat(String name){
         this.name = name;
+        erlaubteFilter = Inserat.getErlaubteEigenschaften();
     }
 
-    public void add(InseratComposite... inserat){
-        this.inserateComposite.addAll(Arrays.asList(inserat));
+    public void add(InseratComposite... inserate){
+        this.inserateComposite.addAll(Arrays.asList(inserate));
+    }
+
+    public void add(ArrayList<Inserat> inserate){
+        this.inserateComposite.addAll(inserate);
     }
 
     public boolean remove(InseratComposite inserat){
@@ -49,13 +55,25 @@ public class Oberinserat implements InseratComposite {
         }
     }
 
-    public ArrayList<Inserat> suche(Filter... filter){
+    public Oberinserat suche(Filter... filter){
+        //Oberinserat ergebnisse = new Oberinserat("Suchergebnisse");
+        ArrayList<Inserat> ergebnisse = sucheIntern(filter);
+        if(ergebnisse == null){
+            return null;
+        }else{
+            Oberinserat tmp = new Oberinserat("Suchergebnisse");
+            tmp.add(ergebnisse);
+            return tmp;
+        }
+    }
+
+    private ArrayList<Inserat> sucheIntern(Filter... filter){
         ArrayList<Inserat> ergebnisse = new ArrayList<>();
 
         for (InseratComposite inserat: inserateComposite){
             if( inserat instanceof Oberinserat){
                 // inserat ist kein Inserat sondern ein Container
-                ArrayList<Inserat> tmp = ((Oberinserat) inserat).suche(filter);
+                ArrayList<Inserat> tmp = ((Oberinserat) inserat).sucheIntern(filter);
                 if(tmp == null){
                     return null;
                 }
@@ -67,10 +85,17 @@ public class Oberinserat implements InseratComposite {
                 int status;
 
                 for (Filter f: filter){
-                    if(Arrays.asList(FilterValues).contains(f.getName())){
-                        status = zahlFilter(i.getEigenschaft(f.getName()), f);
-                    }else if(i.getStandort().getValue(f.getName()) != null){
-                        status = stringFilter(i.getStandort().getValue(f.getName()), f);
+                    if(erlaubteFilter.get(f.getName()) != null){
+                        if(erlaubteFilter.get(f.getName()).equals(f.getType())){
+                            if(f.getType().equals("String")){
+                                status = stringFilter(i.getEigenschaft(f.getName()), f);
+                            }else{
+                                status = zahlFilter(Double.parseDouble(i.getEigenschaft(f.getName())), f);
+                            }
+                        }else{
+                            System.out.println("Invalid Filtertyp: "+f.getType());
+                            status = -1;
+                        }
                     }else{
                         System.out.println("Invalid Filtername: "+f.getName());
                         status = -1;
@@ -102,21 +127,16 @@ public class Oberinserat implements InseratComposite {
         if(a == null){
             return 0;
         }else{
-            try{
-                if(f.getType().equals("min")){
-                    if(a < Integer.parseInt(f.getValue())){
-                        return 0;
-                    }
-                }else if(f.getType().equals("max")){
-                    if(a > Integer.parseInt(f.getValue())){
-                        return 0;
-                    }
-                }else{
-                    System.out.println("Invalid Filtertype: "+f.getType());
-                    return -1;
+            if(f.getMethod().equals("min")){
+                if(a < Double.parseDouble(f.getValue())){
+                    return 0;
                 }
-            }catch (NumberFormatException e) {
-                System.out.println("Invalid Filterwert: " + f.getValue());
+            }else if(f.getMethod().equals("max")){
+                if(a > Double.parseDouble(f.getValue())){
+                    return 0;
+                }
+            }else{
+                System.out.println("Invalid Filtermethod: "+f.getType());
                 return -1;
             }
         }

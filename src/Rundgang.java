@@ -38,7 +38,6 @@ public class Rundgang {
         System.out.println("In der Immobile befinden sich aktuell folgende Möbel.....");
         for (Modellmoebel m : moebel) {
             m.print();
-            System.out.println("-----------------");
         }
     }
 }

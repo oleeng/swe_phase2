@@ -25,37 +25,12 @@ public class Standort {
         return stadt;
     }
 
-    public String getPlz() {
+    public String getPLZ() {
         return plz;
     }
 
     public String getStrasse() {
         return strasse;
-    }
-
-    public String getValue(String wert){
-        String ret;
-        switch (wert){
-            case "Stadt":
-                ret = stadt;
-                break;
-            case "Land":
-                ret = land;
-                break;
-            case "Bundesland":
-                ret = bundesland;
-                break;
-            case "PLZ":
-                ret = plz;
-                break;
-            case "Straße":
-                ret = strasse;
-                break;
-            default:
-                ret = null;
-                break;
-        }
-        return ret;
     }
 
     public void printKarte(){

@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.FileAlreadyExistsException;
+import java.util.Scanner;
+
 public class HelperStuff {
     static String genId(){
         // erzeuge einen zufälligen 64 Zeichen langen ID-String
@@ -24,5 +29,18 @@ public class HelperStuff {
 
     static String padding(String string, int count){
         return string.repeat(count);
+    }
+
+    static void printFile(String path){
+        try{
+            Scanner input = new Scanner(new File(path));
+
+            while (input.hasNextLine())
+            {
+                System.out.println(input.nextLine());
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("the file "+path+" doesn't exist");
+        }
     }
 }

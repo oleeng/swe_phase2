@@ -1,23 +1,36 @@
 public class Filter {
     private String name;
     private String value;
+    private String method;
     private String type;
 
-    public Filter(String name, String value, String type){
+    public Filter(String name, String value){
         this.name = name;
         this.value = value;
-        this.type = type;
+        this.method = "";
+        this.type = "String";
+    }
+
+    public Filter(String name, Double value, String method){
+        this.name = name;
+        this.value = String.valueOf(value);
+        this.method = method;
+        this.type = "Double";
     }
 
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public String getMethod() {
+        return this.method;
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 }

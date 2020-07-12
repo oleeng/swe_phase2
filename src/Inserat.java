@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Inserat implements InseratComposite{
     private String id;
@@ -8,45 +9,108 @@ public class Inserat implements InseratComposite{
     private Standort standort;
     private Rundgang rundgang;
     private ArrayList<Bild> bilder = new ArrayList<>();
-    private HashMap<String, Double> eigenschaften = new HashMap<>();
+    private HashMap<String, String> eigenschaften = new HashMap<>();
 
-    private String[] plichtEigenschaften = {"Preis"};
+    private static HashMap<String, EigenschaftObj> erlaubteEigenschaften = new HashMap<>();
+    static {
+        erlaubteEigenschaften.put("Land", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("Bundesland", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("PLZ", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("Stadt", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("Straße", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("Preis", new EigenschaftObj(true, true, "Double"));
+        erlaubteEigenschaften.put("Größe", new EigenschaftObj(true, false, "Double"));
+        erlaubteEigenschaften.put("Zimmerzahl", new EigenschaftObj(true, false, "Double"));
+    }
+
+    private static class EigenschaftObj{
+        private boolean veraenderlich;
+        private boolean pflich;
+        private String type;
+
+        public EigenschaftObj(boolean veraenderlich, boolean pflicht, String type){
+            this.veraenderlich = veraenderlich;
+            this.pflich = pflicht;
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public boolean isVeraenderlich() {
+            return veraenderlich;
+        }
+
+        public boolean isPflich() {
+            return pflich;
+        }
+    }
+
+    static HashMap<String,String> getErlaubteEigenschaften(){
+        HashMap<String,String> tmp = new HashMap<>();
+        for(String e: erlaubteEigenschaften.keySet()){
+            tmp.put(e, erlaubteEigenschaften.get(e).getType());
+        }
+        return tmp;
+    }
 
     public Inserat(String beschreibung, Standort standort, Double preis){
         this.beschreibung = beschreibung;
         this.standort = standort;
+        this.rundgang = null;
         this.id = HelperStuff.genId();
 
-        eigenschaften.put("Preis", preis);
+        eigenschaften.put("Preis", String.valueOf(preis));
+        eigenschaften.put("Land", standort.getLand());
+        eigenschaften.put("Bundesland", standort.getBundesland());
+        eigenschaften.put("PLZ", standort.getPLZ());
+        eigenschaften.put("Stadt", standort.getStadt());
+        eigenschaften.put("Straße", standort.getStrasse());
     }
 
     public void addRundgang(Rundgang rundgang){
         this.rundgang = rundgang;
     }
 
-    public void addBilder(Bild... bild){
-        bilder.addAll(Arrays.asList(bild));
+    public void removeRundgang(){
+        this.rundgang = null;
+    }
+
+    public void addBilder(Bild... bilder){
+        this.bilder.addAll(Arrays.asList(bilder));
+    }
+
+    public void removeBilder(Bild... bilder){
+        this.bilder.removeAll(Arrays.asList(bilder));
     }
 
     public void addEigenschaften(Eigenschaft... eigenschaften){
         for(Eigenschaft e: eigenschaften){
-            this.eigenschaften.put(e.getName(), e.getValue());
+            EigenschaftObj tmp = this.erlaubteEigenschaften.get(e.getName());
+            if(tmp != null){
+                if(tmp.getType().equals(e.getType()) && tmp.isVeraenderlich()){
+                    this.eigenschaften.put(e.getName(), e.getValue());
+                }else{
+                    System.out.println("Die Eigenschaft "+e.getName()+" ist nicht veränderlich...");
+                }
+            }else{
+                System.out.println("Die Eigenschaft "+e.getName()+" ist nicht erlaubt...");
+            }
         }
     }
 
-    public void removeEigenschaft(String name){
-        if(Arrays.asList(plichtEigenschaften).contains(name)){
-            System.out.println("Du kannst die Eigenschaft "+name+" nicht löschen...");
-        }else{
-            eigenschaften.remove(name);
+    public void removeEigenschaften(String... names){
+        for (String s:names){
+            EigenschaftObj tmp = this.erlaubteEigenschaften.get(s);
+            if(tmp != null){
+                if(tmp.isPflich()){
+                    System.out.println("Du kannst die Eigenschaft "+s+" nicht löschen...");
+                }else{
+                    eigenschaften.remove(s);
+                }
+            }
         }
-    }
-
-    public Double getEigenschaft(String name) {
-        if(eigenschaften.get(name) == null){
-            return null;
-        }
-        return eigenschaften.get(name);
     }
 
     public String getId() {
@@ -80,6 +144,21 @@ public class Inserat implements InseratComposite{
         }
     }
 
+    public void zeigeBilder(){
+        if(bilder.isEmpty()){
+            System.out.println("keine Bilder vorhanden....");
+        }else{
+            System.out.println("Das Inserat hat folgende Bilder:");
+            for(Bild b: bilder){
+                b.anzeigen();
+            }
+        }
+    }
+
+    public String getEigenschaft(String name) {
+        return eigenschaften.get(name);
+    }
+
     public void printEigenschaften(){
         if(eigenschaften.isEmpty()){
             System.out.println("keine Eigenschaften vorhanden...");
@@ -107,6 +186,6 @@ public class Inserat implements InseratComposite{
 
     @Override
     public Double getPreis() {
-        return eigenschaften.get("Preis");
+        return Double.parseDouble(eigenschaften.get("Preis"));
     }
 }
