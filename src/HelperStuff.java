@@ -52,7 +52,6 @@ public class HelperStuff {
         String pathURL = "";
         try {
             pathURL = Paths.get("").toAbsolutePath().toString()+"\\"+path;
-            System.out.println(pathURL);
             BufferedImage img = ImageIO.read(new File(pathURL));
 
             int width = img.getWidth();

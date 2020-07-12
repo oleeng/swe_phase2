@@ -69,7 +69,7 @@ public class Inserat implements InseratComposite{
         eigenschaften.put("Straße", standort.getStrasse());
     }
 
-    public void addRundgang(Rundgang rundgang){
+    public void add(Rundgang rundgang){
         this.rundgang = rundgang;
     }
 
@@ -77,15 +77,15 @@ public class Inserat implements InseratComposite{
         this.rundgang = null;
     }
 
-    public void addBilder(Bild... bilder){
+    public void add(Bild... bilder){
         this.bilder.addAll(Arrays.asList(bilder));
     }
 
-    public void removeBilder(Bild... bilder){
+    public void remove(Bild... bilder){
         this.bilder.removeAll(Arrays.asList(bilder));
     }
 
-    public void addEigenschaften(Eigenschaft... eigenschaften){
+    public void add(Eigenschaft... eigenschaften){
         for(Eigenschaft e: eigenschaften){
             EigenschaftObj tmp = this.erlaubteEigenschaften.get(e.getName());
             if(tmp != null){
@@ -100,7 +100,7 @@ public class Inserat implements InseratComposite{
         }
     }
 
-    public void removeEigenschaften(String... names){
+    public void remove(String... names){
         for (String s:names){
             EigenschaftObj tmp = this.erlaubteEigenschaften.get(s);
             if(tmp != null){
