@@ -43,8 +43,8 @@ public class Main {
                 new Filter("Preis", 1000.0, "max")
         );
 
-        //Bild b = new Bild("a", "png", "C:\\Users\\Ole\\Desktop\\gitRepos\\swe_phase2\\src\\img.txt", 100);
-        //b.anzeigen();
+        Bild b = new Bild("a", "png", "src\\rub.png", 100);
+        b.anzeigen();
 
         System.out.println("Suchergebnisse:");
         if(suchergebnisse == null){

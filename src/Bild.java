@@ -47,6 +47,6 @@ public class Bild {
 
     public void anzeigen(){
         System.out.println("Hier wird das Bild angezeigt");
-        HelperStuff.printFile(this.path);
+        HelperStuff.printImage(this.path);
     }
 }
