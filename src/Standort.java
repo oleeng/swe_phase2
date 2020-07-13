@@ -59,8 +59,6 @@ public class Standort {
             int centerY = img.getHeight()/2;
             centerY -= centerY%4;
 
-            System.out.println(tmp);
-
             String[] str = {"#5A3194", "#CE5AE6", "#FF943A", "#FF523A", "#6B5AE6", "#000000"};
 
             int[][] Braille = {{1,2,4,64},{8,16,32,128}};
