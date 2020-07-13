@@ -46,6 +46,9 @@ public class Main {
         Bild b = new Bild("a", "png", "src\\rub.png", 100);
         b.anzeigen();
 
+        Standort s1 = new Standort("DE", "NRW", "Bochum", "10629", "Mommsenstraße 5");
+        s1.printKarte();
+
         System.out.println("Suchergebnisse:");
         if(suchergebnisse == null){
             System.out.println("Fehlerhafte Filter");
