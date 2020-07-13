@@ -43,10 +43,19 @@ public class Standort {
         return strasse;
     }
 
-    public void printKarte(){
+    public void printKarte(String zoom){
+        int z;
+        if(zoom.equals("nah")){
+            z = 15;
+        }else if(zoom.equals("fern")){
+            z = 14;
+        }else{
+            System.out.println("Invalid zoom: "+zoom+" (nur \"nah\" oder \"fern\")");
+            return;
+        }
         URL url = null;
         try {
-            String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, StandardCharsets.UTF_8)+"&ci="+URLEncoder.encode(stadt, StandardCharsets.UTF_8)+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, StandardCharsets.UTF_8)+"&nocp=1&poithm=1&w=240&z=14&zi="+URLEncoder.encode(plz, StandardCharsets.UTF_8)+"&style=dreamworks";
+            String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, StandardCharsets.UTF_8)+"&ci="+URLEncoder.encode(stadt, StandardCharsets.UTF_8)+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, StandardCharsets.UTF_8)+"&nocp=1&poithm=1&w=240&z="+z+"&zi="+URLEncoder.encode(plz, StandardCharsets.UTF_8)+"&style=dreamworks";
             url = new URL(tmp);
             BufferedImage img = ImageIO.read(url);
 
