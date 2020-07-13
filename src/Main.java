@@ -46,7 +46,7 @@ public class Main {
         Bild b = new Bild("a", "png", "src\\rub.png", 100);
         b.anzeigen();
 
-        Standort s1 = new Standort("DE", "NRW", "Bochum", "10629", "Mommsenstraße 5");
+        Standort s1 = new Standort("DE", "NRW", "Bochum", "^44789", "Königsallee 77-79");
         s1.printKarte();
 
         System.out.println("Suchergebnisse:");

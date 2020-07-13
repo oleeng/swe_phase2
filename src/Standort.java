@@ -62,7 +62,7 @@ public class Standort {
                             String c = "#"+Integer.toHexString(pixcol.getRGB()).substring(2).toUpperCase();
                             if(Arrays.asList(str).contains(c)){
                                 s = true;
-                            }else if(c.equals("#31AD42")){
+                            }else if(c.equals("#31AD42") || c.equals("#FFFFFF")){
                                 marker = true;
                             }
                         }
