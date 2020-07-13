@@ -43,46 +43,45 @@ public class Standort {
         return strasse;
     }
 
-    public void printKarte(String zoom){
-        int z;
-        if(zoom.equals("nah")){
-            z = 15;
-        }else if(zoom.equals("fern")){
-            z = 14;
-        }else{
-            System.out.println("Invalid zoom: "+zoom+" (nur \"nah\" oder \"fern\")");
-            return;
+    public void printKarte(int zoom){
+        //ideal zoom level is 14 or 15
+        if(zoom < 0 || zoom > 20){
+            System.out.println("Invalid zoom: "+zoom+" (value must be between 0 and 20)");
         }
         URL url = null;
         try {
-            String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, StandardCharsets.UTF_8)+"&ci="+URLEncoder.encode(stadt, StandardCharsets.UTF_8)+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, StandardCharsets.UTF_8)+"&nocp=1&poithm=1&w=240&z="+z+"&zi="+URLEncoder.encode(plz, StandardCharsets.UTF_8)+"&style=dreamworks";
+            String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, StandardCharsets.UTF_8)+"&ci="+URLEncoder.encode(stadt, StandardCharsets.UTF_8)+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, StandardCharsets.UTF_8)+"&nocmp=1&nocp=1&nodot=1&w=240&z="+zoom+"&zi="+URLEncoder.encode(plz, StandardCharsets.UTF_8)+"&style=dreamworks";
             url = new URL(tmp);
             BufferedImage img = ImageIO.read(url);
 
+            int centerX = img.getWidth()/2;
+            centerX -= (centerX%2);
+            int centerY = img.getHeight()/2;
+            centerY -= centerY%4;
+
+            System.out.println(tmp);
+
             String[] str = {"#5A3194", "#CE5AE6", "#FF943A", "#FF523A", "#6B5AE6", "#000000"};
 
-            for (int i = 0; i < img.getHeight(); i=i+3) {
-                for (int j = 0; j < img.getWidth(); j=j+3) {
-                    boolean s = false;
-                    boolean marker = false;
-                    for(int k = 0; k < 3; k++){
-                        for(int m = 0; m < 3; m++){
-                            Color pixcol = new Color(img.getRGB(j+k, i+m));
+            int[][] Braille = {{1,2,4,64},{8,16,32,128}};
+
+            for (int i = 0; i < img.getHeight(); i=i+4) {
+                for (int j = 0; j < img.getWidth(); j=j+2) {
+                    if(i == centerY && j == centerX){
+                        System.out.print("@");
+                        continue;
+                    }
+                    int charBraille = 10240;
+                    for(int k = 0; k < 4; k++){
+                        for(int m = 0; m < 2; m++){
+                            Color pixcol = new Color(img.getRGB(j+m, i+k));
                             String c = "#"+Integer.toHexString(pixcol.getRGB()).substring(2).toUpperCase();
                             if(Arrays.asList(str).contains(c)){
-                                s = true;
-                            }else if(c.equals("#31AD42") || c.equals("#FFFFFF")){
-                                marker = true;
+                                charBraille += Braille[m][k];
                             }
                         }
                     }
-                    if(s){
-                        System.out.print("*");
-                    }else if(marker){
-                        System.out.print("#");
-                    }else{
-                        System.out.print(" ");
-                    }
+                    System.out.print((char)charBraille);
                 }
                 System.out.println();
             }

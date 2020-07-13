@@ -47,7 +47,7 @@ public class Main {
         b.anzeigen();
 
         Standort s1 = new Standort("DE", "NRW", "Bochum", "44789", "Königsallee 77-79");
-        s1.printKarte("nah");
+        s1.printKarte(14);
 
         System.out.println("Suchergebnisse:");
         if(suchergebnisse == null){
