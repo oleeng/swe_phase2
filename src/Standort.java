@@ -34,6 +34,9 @@ public class Standort {
     }
 
     public void printKarte(){
+        /*URL url = new URL("http://example.com");
+HttpURLConnection con = (HttpURLConnection) url.openConnection();
+con.setRequestMethod("GET");*/
         System.out.println("gebe hier eine Karte der Location aus.....");
     }
 }
