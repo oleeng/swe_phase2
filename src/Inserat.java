@@ -10,6 +10,9 @@ public class Inserat implements InseratComposite{
     private ArrayList<Bild> bilder = new ArrayList<>();
     private HashMap<String, String> eigenschaften = new HashMap<>();
 
+    private String[] erlaubeImmArt = {"Haus", "Wohnung", "Bungalow"};
+    private String[] erlaubteWohnArt = {"mieten", "kaufen"};
+
     private static HashMap<String, EigenschaftObj> erlaubteEigenschaften = new HashMap<>();
     static {
         erlaubteEigenschaften.put("Land", new EigenschaftObj(false, true, "String"));
@@ -20,6 +23,9 @@ public class Inserat implements InseratComposite{
         erlaubteEigenschaften.put("Preis", new EigenschaftObj(true, true, "Double"));
         erlaubteEigenschaften.put("Größe", new EigenschaftObj(true, false, "Double"));
         erlaubteEigenschaften.put("Zimmerzahl", new EigenschaftObj(true, false, "Double"));
+
+        erlaubteEigenschaften.put("Typ", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("Wohnart", new EigenschaftObj(false, true, "String"));
     }
 
     private static class EigenschaftObj{
@@ -54,7 +60,7 @@ public class Inserat implements InseratComposite{
         return tmp;
     }
 
-    public Inserat(String beschreibung, Standort standort, Double preis){
+    public Inserat(String beschreibung, Standort standort, Double preis, String immobielenart, String wohnart){
         this.beschreibung = beschreibung;
         this.standort = standort;
         this.rundgang = null;
@@ -66,6 +72,16 @@ public class Inserat implements InseratComposite{
         eigenschaften.put("PLZ", standort.getPLZ());
         eigenschaften.put("Stadt", standort.getStadt());
         eigenschaften.put("Straße", standort.getStrasse());
+
+        if(!Arrays.asList(erlaubeImmArt).contains(immobielenart)){
+            immobielenart = "nicht bekannt";
+        }
+        if(!Arrays.asList(erlaubteWohnArt).contains(wohnart)){
+            wohnart = "nicht bekannt";
+        }
+
+        eigenschaften.put("Typ", immobielenart);
+        eigenschaften.put("Wohnart", wohnart);
     }
 
     public void add(Rundgang rundgang){

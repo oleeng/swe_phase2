@@ -7,19 +7,19 @@ public class Main {
 
         InserateContainer.add(OberklasseHaus, OberklasseWohnung, OberklasseBungalow);
 
-        Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0);
+        Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0, "Wohnung", "mieten");
         inserat1.add(
                 new Eigenschaft("Größe", 120.0),
                 new Eigenschaft("Zimmerzahl", 3.0)
         );
 
-        Inserat inserat2 = new Inserat("andere Wohnung", new Standort("DE", "NRW", "Bochum", "10629", "Mommsenstraße 5"), 300.0);
+        Inserat inserat2 = new Inserat("andere Wohnung", new Standort("DE", "NRW", "Bochum", "10629", "Mommsenstraße 5"), 300.0, "Wohnung", "mieten");
         inserat2.add(
                 new Eigenschaft("Größe", 90.0),
                 new Eigenschaft("Zimmerzahl", 4.0)
         );
 
-        Inserat haus1 = new Inserat("Testhaus", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 150000.0);
+        Inserat haus1 = new Inserat("Testhaus", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 150000.0, "Haus", "kaufen");
         haus1.add(
                 new Eigenschaft("Größe", 90.0),
                 new Eigenschaft("Zimmerzahl", 4.0)
