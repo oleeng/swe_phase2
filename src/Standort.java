@@ -63,8 +63,8 @@ public class Standort {
 
             int[][] Braille = {{1,2,4,64},{8,16,32,128}};
 
-            for (int i = 0; i < img.getHeight(); i=i+4) {
-                for (int j = 0; j < img.getWidth(); j=j+2) {
+            for (int i = 0; i < img.getHeight()-4; i=i+4) {
+                for (int j = 0; j < img.getWidth()-2; j=j+2) {
                     if(i == centerY && j == centerX){
                         System.out.print("@");
                         continue;
@@ -79,7 +79,11 @@ public class Standort {
                             }
                         }
                     }
-                    System.out.print((char)charBraille);
+                    if(charBraille == 10240){
+                        System.out.print((char)10244);
+                    }else{
+                        System.out.print((char)charBraille);
+                    }
                 }
                 System.out.println();
             }

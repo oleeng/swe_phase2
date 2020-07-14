@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class HelperStuff {
@@ -37,7 +38,7 @@ public class HelperStuff {
 
     static void printFile(String path){
         try{
-            Scanner input = new Scanner(new File(path));
+            Scanner input = new Scanner(new File(Paths.get("").toAbsolutePath().toString()+"\\"+path));
             while (input.hasNextLine())
             {
                 System.out.println(input.nextLine());
@@ -53,49 +54,41 @@ public class HelperStuff {
             pathURL = Paths.get("").toAbsolutePath().toString()+"\\"+path;
             BufferedImage img = ImageIO.read(new File(pathURL));
 
-            int width = img.getWidth();
-            int steps;
+            int newW = 240;
+            double scale = img.getWidth()/newW;
+            int newH = (int)(img.getHeight()/scale);
 
-            if(width <= 80){
-                steps = 1;
-            }else{
-                steps = width/80;
-            }
+            Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+            BufferedImage resized = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = resized.createGraphics();
+            g2d.drawImage(tmp, 0, 0, null);
+            g2d.dispose();
 
-            for (int i = 0; i < img.getHeight(); i=i+steps) {
-                for (int j = 0; j < img.getWidth(); j=j+steps) {
-                    Color pixcol = new Color(img.getRGB(j, i));
-                    double pixval = (((pixcol.getRed() * 0.30) + (pixcol.getBlue() * 0.59) + (pixcol.getGreen() * 0.11)));
-                    System.out.print(strChar(pixval));
+            int[][] Braille = {{1,2,4,64},{8,16,32,128}};
+            int threshold = 150;
+
+            for (int i = 0; i < resized.getHeight()-4; i+=4) {
+                for (int j = 0; j < resized.getWidth()-2; j+=2) {
+                    int charBraille = 10495;
+                    for(int k = 0; k < 4; k++){
+                        for(int m = 0; m < 2; m++){
+                            Color pixcol = new Color(resized.getRGB(j+m, i+k));
+                            double pixelval = (pixcol.getRed() * 0.30) + (pixcol.getBlue() * 0.59) + (pixcol.getGreen() * 0.11);
+                            if(pixelval >= threshold){
+                                charBraille -= Braille[m][k];
+                            }
+                        }
+                    }
+                    if(charBraille == 10240){
+                        System.out.print((char)10244);
+                    }else{
+                        System.out.print((char)charBraille);
+                    }
                 }
                 System.out.println();
             }
         } catch (IOException e) {
             System.out.println("Die Datei "+pathURL+" konnte nicht geladen werden....");
         }
-    }
-
-    private static String strChar(double g) {
-        String str = " ";
-        if (g >= 240) {
-            str = " ";
-        } else if (g >= 210) {
-            str = ".";
-        } else if (g >= 190) {
-            str = "*";
-        } else if (g >= 170) {
-            str = "+";
-        } else if (g >= 120) {
-            str = "^";
-        } else if (g >= 110) {
-            str = "&";
-        } else if (g >= 80) {
-            str = "8";
-        } else if (g >= 60) {
-            str = "#";
-        } else {
-            str = "@";
-        }
-        return str;
     }
 }
