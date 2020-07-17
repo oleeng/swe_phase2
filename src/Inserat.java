@@ -64,7 +64,7 @@ public class Inserat implements InseratComposite{
         this.beschreibung = beschreibung;
         this.standort = standort;
         this.rundgang = null;
-        this.id = HelperStuff.genId();
+        this.id = Helper.genId();
 
         eigenschaften.put("Preis", String.valueOf(preis));
         eigenschaften.put("Land", standort.getLand());
@@ -191,8 +191,8 @@ public class Inserat implements InseratComposite{
     }
 
     @Override
-    public void print(int level) {
-        String padding = HelperStuff.padding(" ", level);
+    public void print(Integer level) {
+        String padding = Helper.padding(" ", level);
         System.out.println(padding+"+-----------------------------------------------");
         System.out.println(padding+"|"+"Inserat (id: "+id+")");
         System.out.println(padding+"|"+"Beschreibung: "+beschreibung);

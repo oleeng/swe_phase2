@@ -1,25 +1,27 @@
+import java.io.FileNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
-        Oberinserat InserateContainer = new Oberinserat("Container");
-        Oberinserat OberklasseHaus = new Oberinserat("Häuser");
-        Oberinserat OberklasseWohnung = new Oberinserat("Wohnungen");
-        Oberinserat OberklasseBungalow = new Oberinserat("Bungalows");
+        InseratContainer InserateContainer = new InseratContainer("Container");
+        InseratContainer OberklasseHaus = new InseratContainer("Häuser");
+        InseratContainer OberklasseWohnung = new InseratContainer("Wohnungen");
+        InseratContainer OberklasseBungalow = new InseratContainer("Bungalows");
 
         InserateContainer.add(OberklasseHaus, OberklasseWohnung, OberklasseBungalow);
 
-        Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0, "Wohnung", "mieten");
+        Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("Deutschland", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0, "Wohnung", "mieten");
         inserat1.add(
                 new Eigenschaft("Größe", 120.0),
                 new Eigenschaft("Zimmerzahl", 3.0)
         );
 
-        Inserat inserat2 = new Inserat("andere Wohnung", new Standort("DE", "NRW", "Bochum", "10629", "Mommsenstraße 5"), 300.0, "Wohnung", "mieten");
+        Inserat inserat2 = new Inserat("andere Wohnung", new Standort("Deutschland", "NRW", "Bochum", "10629", "Mommsenstraße 5"), 300.0, "Wohnung", "mieten");
         inserat2.add(
                 new Eigenschaft("Größe", 90.0),
                 new Eigenschaft("Zimmerzahl", 4.0)
         );
 
-        Inserat haus1 = new Inserat("Testhaus", new Standort("DE", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 150000.0, "Haus", "kaufen");
+        Inserat haus1 = new Inserat("Testhaus", new Standort("Deutschland", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 150000.0, "Haus", "kaufen");
         haus1.add(
                 new Eigenschaft("Größe", 90.0),
                 new Eigenschaft("Zimmerzahl", 4.0)
@@ -33,7 +35,7 @@ public class Main {
 
         System.out.println(InserateContainer.getPreis()+"€");
 
-        Oberinserat suchergebnisse = InserateContainer.suche(
+        InseratContainer suchergebnisse = InserateContainer.suche(
                 new Filter("Stadt", "Berlin"),
                 new Filter("Größe", 80.0, "min"),
                 new Filter("Größe", 150.0, "max"),
@@ -41,7 +43,12 @@ public class Main {
                 new Filter("Preis", 1000.0, "max")
         );
 
-        Bild b = new Bild("a", "png", "src\\rub.png", 100);
+        Bild b = null;
+        try {
+            b = new Bild("a", "img\\rub.png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         b.anzeigen();
 
         Standort s1 = new Standort("DE", "NRW", "Bochum", "44789", "Königsallee 77-79");
