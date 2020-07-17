@@ -70,8 +70,8 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Konstuktoren
 |Konstruktor|Beschreibung|
 |:---|:---|
-|*Eigenschaft(String name, String value)*|Erzeugt eine neue [Eigenschaft](#class-eigenschaft) Instanz mit dem Namen *name* und dem Stringwert *value*|
-|*Eigenschaft(String name, Double value)*|Erzeugt eine neue [Eigenschaft](#class-eigenschaft) Instanz mit dem Namen *name* und dem Doublewert *value*|
+|*Eigenschaft(String name, String value)*|Erzeugt eine neue [*Eigenschaft*](#class-eigenschaft) Instanz mit dem Namen *name* und dem Stringwert *value*|
+|*Eigenschaft(String name, Double value)*|Erzeugt eine neue [*Eigenschaft*](#class-eigenschaft) Instanz mit dem Namen *name* und dem Doublewert *value*|
 
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
@@ -90,8 +90,8 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Konstuktoren
 |Konstruktor|Beschreibung|
 |:---|:---|
-|*Filter(String name, String value)*|Erzeugt eine neue [Filter](#class-filter) Instanz mit dem Namen *name* und dem Stringwert *value*|
-|*Filter(String name, Double value, String method)*|Erzeugt eine neue [Filter](#class-filter) Instanz mit dem Namen *name* und dem Doublewert *value*. Beim Typ kann mit *"min"* oder *"max"* angegeben werden ob es sich um eine obere oder untere Grenze handelt.|
+|*Filter(String name, String value)*|Erzeugt eine neue [*Filter*](#class-filter) Instanz mit dem Namen *name* und dem Stringwert *value*|
+|*Filter(String name, Double value, String method)*|Erzeugt eine neue [*Filter*](#class-filter) Instanz mit dem Namen *name* und dem Doublewert *value*. Beim Typ kann mit *"min"* oder *"max"* angegeben werden ob es sich um eine obere oder untere Grenze handelt.|
 
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
@@ -111,5 +111,36 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 |*void*|*print(Integer level)*|
 |*Double*|*getPreis()*|
 
-### class Interface
+### class Inserat
 *public class Inserat implements InseratComposite*
+
+#### Variablen
+|Modifier and Type|Name|
+|:---|:---|
+
+#### Konstuktoren
+|Konstruktor|Beschreibung|
+|:---|:---|
+|*Inserat(String beschreibung, Standort standort, Double preis, String immobielenart, String wohnart)*|Erzeugt eine neue [*Inserat*](#class-inserat) Instanz mit der Beschreibung *beschreibung*, dem in *standort* übergebenen [*Standort*](#class-standort), dem Preis *preis*, der Immobilienart *immobilienart*, welche angibt, ob es sich um ein "Haus", "Wohnung" oder "Bungalow" hadelt, und der Wohnart *wohnart*, welche angibt, ob es sich um ein "wohnen" oder "kaufen" Objekt handelt.
+
+#### Methoden
+|Modifier and Type|Methode|Beschreibung|
+|:---|:---|:---|
+|*static HashMap<String,String>*|*getErlaubteEigenschaften()*|Diese Funktion gibt eine Hashmap aller erlaubten Eigenschaften/Filter zurück. Dabei ist der Key der Name der Eigenschaft und der Wert der Typ der jeweiligen Eigenschaft, also "String" oder "Double".|
+|*void*|*add([*Rundgang*](#class-rundgang) rundgang)*|Fügt dem [*Inserat*](#class-inserat) den in *rundgang* übergebenen [*Rundgang*](#class-rundgang) hinzu.|
+|*void*|*removeRundgang()*|Entfernt den [*Rundgang*](#class-rundgang) des [*Inserat*](#class-inserat).|
+|*void*|*add([*Bild*](#class-bild) ... bilder)*|Fügt dem [*Inserat*](#class-inserat) alle in *bilder* übergebenen [*Bilder*](#class-bild) hinzu.|
+|*void*|*remove([*Bild*](#class-bild)... bilder)*|Entfernt alle in *bilder* übergebenen [*Bilder*](#class-bild) dem [*Inserat*](#class-inserat).|
+|*void*|*add([*Eigenschaft*](#class-eigenschaft)... eigenschaften)*|Fügt dem [*Inserat*](#class-inserat) alle in *eigenschaften* übergebenen [*Eigenschaften*](#class-eigenschaft) hinzu.|
+|*void*|*remove(String... names)*|Entfernt alle in [*Eigenschaften*](#class-eigenschaft) mit mit den Namen *names* dem [*Inserat*](#class-inserat).|
+|*String*|*getId()*|Gibt die 64-Zeichen lange ID des [*Inserats*](#class-inserat) zurück|
+|*String*|*getBeschreibung()*|Gibt die Beschreibung des [*Inserats*](#class-inserat) zurück|
+|*[*Standort*](#class-standort)*|*getStandort()*|Gibt den [*Standort*](#class-standort) des [*Inserats*](#class-inserat) zurück|
+|*void*|*starteRundgang()*|Startet den [*Rundgang*](#class-Rundgang) des [*Inserats*](#class-inserat).|
+|*void*|*printBilder()*|Ruft für jedes [*Bild*](#class-bild) des [*Inserats*](#class-inserat) die *print()* Funktion auf.|
+|*void*|*zeigeBilder()*|Ruft für jedes [*Bild*](#class-bild) des [*Inserats*](#class-inserat) die *anzeigen()* Funktion auf.|
+|*String*|*getEigenschaft(String name)*|Gibt den Wert der [*Eigenschaft*](#class-eigenschaft) mit dem Namen *name* des [*Inserats*](#class-inserat) zurück. Falls das [*Inserat*](#class-inserat) diese [*Eigenschaft*](#class-eigenschaft) nicht besitzt wird *null* zurückgegeben.|
+|*void*|*printEigenschaften()*|Gibt alle [*Eigenschaften*](#class-eigenschaft) des [*Inserats*](#class-inserat) in der Konsole aus.|
+|*void*|*print()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt für das [*Inserat*](#class-inserat) die ID und die Beschreibung in der Konsole aus.|
+|*void*|*print(Integer level)*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt für das [*Inserat*](#class-inserat) die ID und die Beschreibung in der Konsole aus, jedoch mit einem padding entsprechned dem in *level* übergebenen Wert.|
+|*Double*|*getPreis()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt den Preis des [*Inserats*](#class-inserat) zurück.
