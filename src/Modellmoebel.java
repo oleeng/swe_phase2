@@ -6,7 +6,7 @@ public class Modellmoebel {
     public Modellmoebel(String beschreibung, String groesse){
         this.beschreibung = beschreibung;
         this.groesse = groesse;
-        this.id = HelperStuff.genId();
+        this.id = Helper.genId();
     }
 
     public void print(){

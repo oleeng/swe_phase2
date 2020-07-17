@@ -5,11 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class HelperStuff {
-    static String genId(){
+public class Helper {
+    public static String genId(){
         // erzeuge einen zufälligen 64 Zeichen langen ID-String
         String tmp = "";
         for(int i = 0; i < 64; i++){
@@ -32,11 +31,11 @@ public class HelperStuff {
         return tmp;
     }
 
-    static String padding(String string, int count){
+    public static String padding(String string, Integer count){
         return string.repeat(count);
     }
 
-    static void printFile(String path){
+    public static void printFile(String path){
         try{
             Scanner input = new Scanner(new File(Paths.get("").toAbsolutePath().toString()+"\\"+path));
             while (input.hasNextLine())
@@ -44,15 +43,13 @@ public class HelperStuff {
                 System.out.println(input.nextLine());
             }
         }catch (FileNotFoundException e){
-            System.out.println("the file "+path+" doesn't exist");
+            System.out.println("Die Datei "+path+" existiert nicht...");
         }
     }
 
-    static void printImage(String path){
-        String pathURL = "";
+    public static void printImage(String path){
         try {
-            pathURL = Paths.get("").toAbsolutePath().toString()+"\\"+path;
-            BufferedImage img = ImageIO.read(new File(pathURL));
+            BufferedImage img = ImageIO.read(new File(path));
 
             int newW = 240;
             double scale = img.getWidth()/newW;
@@ -88,7 +85,7 @@ public class HelperStuff {
                 System.out.println();
             }
         } catch (IOException e) {
-            System.out.println("Die Datei "+pathURL+" konnte nicht geladen werden....");
+            System.out.println("Die Datei "+path+" konnte nicht geladen werden....");
         }
     }
 }

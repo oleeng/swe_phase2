@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Oberinserat implements InseratComposite {
+public class InseratContainer implements InseratComposite {
     private String name;
     private ArrayList<InseratComposite> inserateComposite = new ArrayList<>();
 
     private HashMap<String, String> erlaubteFilter = new HashMap<>();
 
-    public Oberinserat(String name){
+    public InseratContainer(String name){
         this.name = name;
         erlaubteFilter = Inserat.getErlaubteEigenschaften();
     }
@@ -26,8 +26,8 @@ public class Oberinserat implements InseratComposite {
         if(!inserateComposite.remove(inserat)){
             // inserat kannte in der Liste nicht gefunden werden
             for(InseratComposite i: inserateComposite){
-                if(i instanceof Oberinserat){
-                    if(((Oberinserat) i).remove(inserat)){
+                if(i instanceof InseratContainer){
+                    if(((InseratContainer) i).remove(inserat)){
                         found = true;
                         break;
                     }
@@ -46,22 +46,22 @@ public class Oberinserat implements InseratComposite {
     }
 
     @Override
-    public void print(int level) {
+    public void print(Integer level) {
         for (InseratComposite inserat: inserateComposite){
-            if(inserat instanceof Oberinserat){
-                System.out.println(HelperStuff.padding("-", level)+"Inseratcontainer: "+((Oberinserat) inserat).name);
+            if(inserat instanceof InseratContainer){
+                System.out.println(Helper.padding("-", level)+"Inseratcontainer: "+((InseratContainer) inserat).name);
             }
             inserat.print(level+1);
         }
     }
 
-    public Oberinserat suche(Filter... filter){
-        //Oberinserat ergebnisse = new Oberinserat("Suchergebnisse");
+    public InseratContainer suche(Filter... filter){
+        //InseratContainer ergebnisse = new InseratContainer("Suchergebnisse");
         ArrayList<Inserat> ergebnisse = sucheIntern(filter);
         if(ergebnisse == null){
             return null;
         }else{
-            Oberinserat tmp = new Oberinserat("Suchergebnisse");
+            InseratContainer tmp = new InseratContainer("Suchergebnisse");
             tmp.add(ergebnisse);
             return tmp;
         }
@@ -71,9 +71,9 @@ public class Oberinserat implements InseratComposite {
         ArrayList<Inserat> ergebnisse = new ArrayList<>();
 
         for (InseratComposite inserat: inserateComposite){
-            if( inserat instanceof Oberinserat){
+            if( inserat instanceof InseratContainer){
                 // inserat ist kein Inserat sondern ein Container
-                ArrayList<Inserat> tmp = ((Oberinserat) inserat).sucheIntern(filter);
+                ArrayList<Inserat> tmp = ((InseratContainer) inserat).sucheIntern(filter);
                 if(tmp == null){
                     return null;
                 }

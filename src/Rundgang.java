@@ -10,7 +10,7 @@ public class Rundgang {
     public Rundgang(String audiokommentar, String dimensionen){
         this.audiokommentar = audiokommentar;
         this.dimensionen = dimensionen;
-        this.id = HelperStuff.genId();
+        this.id = Helper.genId();
     }
 
     public String getId() {
