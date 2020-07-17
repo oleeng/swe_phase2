@@ -121,7 +121,7 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Konstuktoren
 |Konstruktor|Beschreibung|
 |:---|:---|
-|*Inserat(String beschreibung, Standort standort, Double preis, String immobielenart, String wohnart)*|Erzeugt eine neue [*Inserat*](#class-inserat) Instanz mit der Beschreibung *beschreibung*, dem in *standort* übergebenen [*Standort*](#class-standort), dem Preis *preis*, der Immobilienart *immobilienart*, welche angibt, ob es sich um ein "Haus", "Wohnung" oder "Bungalow" hadelt, und der Wohnart *wohnart*, welche angibt, ob es sich um ein "wohnen" oder "kaufen" Objekt handelt.
+|*Inserat(String beschreibung, Standort standort, Double preis, String immobielenart, String wohnart)*|Erzeugt eine neue [*Inserat*](#class-inserat) Instanz mit der Beschreibung *beschreibung*, dem in *standort* übergebenen [*Standort*](#class-standort), dem Preis *preis*, der Immobilienart *immobilienart*, welche angibt, ob es sich um ein "Haus", "Wohnung" oder "Bungalow" hadelt, und der Wohnart *wohnart*, welche angibt, ob es sich um ein "wohnen" oder "kaufen" Objekt handelt.|
 
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
@@ -144,3 +144,90 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 |*void*|*print()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt für das [*Inserat*](#class-inserat) die ID und die Beschreibung in der Konsole aus.|
 |*void*|*print(Integer level)*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt für das [*Inserat*](#class-inserat) die ID und die Beschreibung in der Konsole aus, jedoch mit einem padding entsprechned dem in *level* übergebenen Wert.|
 |*Double*|*getPreis()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt den Preis des [*Inserats*](#class-inserat) zurück.
+
+### class InseratContainer
+*public class Inserat implements InseratComposite*
+
+#### Variablen
+|Modifier and Type|Name|
+|:---|:---|
+
+#### Konstuktoren
+|Konstruktor|Beschreibung|
+|:---|:---|
+|*InseratContainer(String name)*|Erzeugt eine neue [*InseratContainer*](#class-inseratcontainer) Instanz mit dem Namen *name*.|
+
+#### Methoden
+|Modifier and Type|Methode|Beschreibung|
+|:---|:---|:---|
+|*void*|*add([*InseratComposite*](#interface-inseratcomposite)... inserate)*|Fügt dem [*InseratContainer*](#class-inseratcontainer) alle in *inserate* übergebenen [*InseratComposite*](#interface-inseratcomposite) hinzu.|
+|*void*|*add(ArrayList<[*InseratComposite*](#interface-inseratcomposite)> inserate)*|Fügt dem [*InseratContainer*](#class-inseratcontainer) alle in *inserate* übergebenen [*InseratComposite*](#interface-inseratcomposite) hinzu.|
+|*void*|*remove([*InseratComposite*](#interface-inseratcomposite) inserat)*|Entfernt dem [*InseratContainer*](#class-inseratcontainer) das in *inserat* übergebene [*InseratComposite*](#interface-inseratcomposite), wenn es exsistiert.|
+|*void*|*print()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) auf der Konsole aus.|
+|*void*|*print(Integer level)*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) auf der Konsole aus, jedoch mit einem padding entsprechned dem in *level* übergebenen Wert.|
+|*[*InseratContainer*](#class-inseratcontainer)*|*suche([*Filter*](#class-filter)... filter)*|Durchsucht alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) nach den [*Inseraten*](#class-inserat), die alle in *filter* übergebenen [*Filter*](#class-filter) erfüllen. Bei fehlerhaften oder üngültigen Filtern wird eine entsprechende Nachricht in der Konsole ausgegeben und der Filtervorgang abgebrochen.|
+|*Double*|*getPreis()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt den Gesamtpreis aller im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) zurück.|
+
+### class Modellmoebel
+*public class Modellmoebel*
+
+#### Variablen
+|Modifier and Type|Name|
+|:---|:---|
+
+#### Konstuktoren
+|Konstruktor|Beschreibung|
+|:---|:---|
+|*Modellmoebel(String beschreibung, String groesse)*|Erzeugt eine neue [*Modellmoebel*](#class-modellmoebel) Instanz mit der Beschreibung *beschreibung* und den Maßen *groesse*.|
+
+#### Methoden
+|Modifier and Type|Methode|Beschreibung|
+|:---|:---|:---|
+|*void*|*print()*|Diese Funktion gibt die Id, die Beschreibung und die Maße des [*Modellmoebel*](#class-modellmoebel) in der Konsole aus.|
+|*String*|*getId()*|Gibt die 64-Zeichen lange ID des [*Modellmoebel*](#class-modellmoebel) zurück.|
+|*String*|*getBeschreibung()*|Gibt die Beschreibung des [*Modellmoebel*](#class-modellmoebel) zurück.|
+|*String*|*getGroesse()*|Gibt die Maße des [*Modellmoebel*](#class-modellmoebel) zurück.|
+
+### class Rundgang
+*public class Rundgang*
+
+#### Variablen
+|Modifier and Type|Name|
+|:---|:---|
+
+#### Konstuktoren
+|Konstruktor|Beschreibung|
+|:---|:---|
+|*Rundgang(String audiokommentar)*|Erzeugt eine neue [*Rundgang*](#class-rundgang) Instanz mit dem Audiokommentar *audiokommentar*.|
+
+#### Methoden
+|Modifier and Type|Methode|Beschreibung|
+|:---|:---|:---|
+|*String*|*getId()*|Gibt die 64-Zeichen lange ID des [*Modellmoebel*](#class-modellmoebel) zurück.|
+|*void*|*starteRundgang()*|Startet den [*Rundgang*](#class-rundgang).|
+|*void*|*playAudiokommentar()*|Spielt den Audiokommentar des [*Rundgang*](#class-rundgang) ab.|
+|*void*|*addMoebel([*Modellmoebel*](#class-modellmoebel)... moebel)*|Fügt dem [*Rundgang*](#class-rundgang) alle in *moebel* enthaltenen [*Modellmoebel*](#class-modellmoebel) hinzu.|
+|*void*|*printMoebel()*|Gibt alle im [*Rundgang*](#class-rundgang) enthaltenen [*Modellmoebel*](#class-modellmoebel) in der Konsole aus.|
+
+### class Standort
+*public class Standort*
+
+#### Variablen
+|Modifier and Type|Name|
+|:---|:---|
+
+#### Konstuktoren
+|Konstruktor|Beschreibung|
+|:---|:---|
+|*Standort(String land, String bundesland, String stadt, String plz, String strasse)*|Erzeugt eine neue [*Standort*](#class-standort) Instanz mit den übergebenen Parametern.|
+
+#### Methoden
+|Modifier and Type|Methode|Beschreibung|
+|:---|:---|:---|
+|*String*|*getLand()*|Gibt das Land des [*Standorts*](#class-standort) zurück.|
+|*String*|*getBundesland()*|Gibt das Bundesland des [*Standorts*](#class-standort) zurück.|
+|*String*|*getStadt()*|Gibt die Stadt des [*Standorts*](#class-standort) zurück.|
+|*String*|*getPLZ()*|Gibt die PLZ des [*Standorts*](#class-standort) zurück.|
+|*String*|*getStrasse()*|Gibt die Straße des [*Standorts*](#class-standort) zurück.|
+|*void*|*printKarte(Integer zoom)*|Ruft von der [*here-API*](https://developer.here.com/) einen Kartenausschnitt von dem [*Standort*](#class-standort) unter Beachtung des in *zoom* angegeben Zoomfaktors ab, konvertiert ihn in ASCII-Art und gibt ihn anschließend auf der Konsole aus. Der Zoomfaktor darf zwischen 0 und 20 liegen, es wird jedoch ein Wert von 14 oder 15 empfohlen.<br>**Achtung: Die Konsole muss dafür unicode bzw. UTF-8 unterstützen**|
+
