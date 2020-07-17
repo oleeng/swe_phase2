@@ -30,7 +30,7 @@ Diese Klasse stellt einige Hilfsfunktionen für andere Klassen bereit.
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
 |:---|:---|:---|
-|*static String*|*genId()*|Diese Funktion erzeugt einen 64-Zeichen langen pseudozufälligen String (nicht kryptographisch sicher), der von anderen Klassen für die Erzeugung einer eindeutigen ID genutzt wird, und gibt diesen zurück.|
+|*static String*|*genId()*|Diese Funktion gibt einen 64-Zeichen langen pseudozufälligen String (nicht kryptographisch sicher), der von anderen Klassen für die Erzeugung einer eindeutigen ID genutzt wird, zurück.|
 |*static String*|*padding(String string, Integer count)*|Wiederholt den String *string* *count*-mal und gibt ihn zurück. Diese Funktion wird von anderen Funktionen zur Erzeugung von padding genutzt.|
 |*static void*|*printFile(String path)*|Gibt den Inhalt der in *path* übergebenen Datei in der Konsole aus. Wenn die Datei nicht existiert, wird eine entsprechende Nachricht auf der Konsole ausgegeben ohne eine Exception zu werfen oder das Programm zu beenden.|
 |*static void*|*printImage(String path)*|Konvertiert die in *path* angegebene Bilddatei in ASCII-Art und gibt sie anschließend auf der Konsole aus. Wenn die Datei nicht geöffnet werden kann wird eine entsprechende Nachricht in der Konsole ausgegeben ohne eine Exception zu werfen oder das Programm zu beenden.<br>**Achtung: Die Konsole muss dafür unicode bzw. UTF-8 unterstützen**|
@@ -38,7 +38,7 @@ Diese Klasse stellt einige Hilfsfunktionen für andere Klassen bereit.
 ### class Bild
 *public class Bild*
 
-Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
+Diese Klasse stellt ein Bild dar und kann unteranderem der Klasse [*Inserat*](#class-inserat) hinzugefügt werden. Sie nutzt Funktionen der Klasse [*Helper*](#class-helper)
 
 #### Variablen
 |Modifier and Type|Name|
@@ -52,16 +52,18 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
 |:---|:---|:---|
-|*String*|*getId()*|Gibt die 64-Zeichen lange ID des Bildes zurück|
-|*String*|*getBeschreibung()*|Gibt die Beschreibung des Bildes zurück|
-|*String*|*getDateiformat()*|Gibt da Dateiformat des Bildes zurück|
-|*String*|*getPath()*|Gibt den absoluten Pfad des Bildes zurück|
-|*Integer*|*getDateigroesse()*|Gibt die 64-Zeichen lange ID des Bildes zurück|
-|*void*|*print()*|gibt alle wichtigen Informationen zu dem Bild in der Konsole aus|
-|*void*|*anzeigen()*|Konvertiert das Bild in ASCII-Art und gibt es auf der Konsole aus. Diese Funktion nutzt die Funktion *printImage(String path) der Klasse [*Helper*](#class-helper)<br>**Achtung: Die Konsole muss dafür unicode bzw. UTF-8 unterstützen**|
+|*String*|*getId()*|Gibt die 64-Zeichen lange ID des [*Bildes*](#class-bild) zurück|
+|*String*|*getBeschreibung()*|Gibt die Beschreibung des [*Bildes*](#class-bild) zurück|
+|*String*|*getDateiformat()*|Gibt da Dateiformat des [*Bildes*](#class-bild) zurück|
+|*String*|*getPath()*|Gibt den absoluten Pfad des [*Bildes*](#class-bild) zurück|
+|*Integer*|*getDateigroesse()*|Gibt die Dateigröße des [*Bildes*](#class-bild) in Byte zurück|
+|*void*|*print()*|Gibt alle wichtigen Informationen zu dem [*Bild*](#class-bild) in der Konsole aus|
+|*void*|*anzeigen()*|Konvertiert das Bild in ASCII-Art und gibt es auf der Konsole aus. Diese Funktion nutzt die Funktion *printImage(String path)* der Klasse [*Helper*](#class-helper)<br>**Achtung: Die Konsole muss dafür unicode bzw. UTF-8 unterstützen**|
 
 ### class Eigenschaft
 *public class Eigenschaft*
+
+Diese Klasse stellt eine Eigenschaft dar, die einem [*Inserat*](#class-inserat) hinzugefügt werden kann.
 
 #### Variablen
 |Modifier and Type|Name|
@@ -76,12 +78,14 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
 |:---|:---|:---|
-|*String*|*getName()*|Gibt den Namen der Eigenschaft zurück.|
-|*String*|*getValue()*|Gibt den Wert der Eigenschaft zurück. Doublewerte werden hier als String zurückgegeben|
-|*String*|*getType()*|Gibt den Typ der Eigenschaft zurück, also ob es sich bei dem gespeicherten Wert um eine *"String"* oder *"Double"* handelt|
+|*String*|*getName()*|Gibt den Namen der [*Eigenschaft*](#class-eigenschaft) zurück.|
+|*String*|*getValue()*|Gibt den Wert der [*Eigenschaft*](#class-eigenschaft) zurück. Doublewerte werden hier als String zurückgegeben|
+|*String*|*getType()*|Gibt den Typ der [*Eigenschaft*](#class-eigenschaft) zurück, also ob es sich bei dem gespeicherten Wert um eine *"String"* oder *"Double"* handelt|
 
 ### class Filter
 *public class Filter*
+
+Diese Klasse stellt einen Filter, der dafür genutzt werden kann alle [*Inserate*](#class-inserat) eines [*InseratContainers*](#class-inseratcontainer) nach bestimmten Kriterien zu durchsuchen.
 
 #### Variablen
 |Modifier and Type|Name|
@@ -96,13 +100,15 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
 |:---|:---|:---|
-|*String*|*getName()*|Gibt den Namen des Filters zurück.|
-|*String*|*getValue()*|Gibt den Wert des Filters zurück. Doublewerte werden hier als String zurückgegeben|
-|*String*|*getMethod()*|Gibt die Filtermethode des Filters zurück. Bei einem Textfilter wird als Methode ein leerer String zurückgegeben.|
-|*String*|*getType()*|Gibt den Typ des Filters zurück, also ob es sich bei dem gespeicherten Wert um eine *"String"* oder *"Double"* handelt|
+|*String*|*getName()*|Gibt den Namen des [*Filters*](#class-filter) zurück.|
+|*String*|*getValue()*|Gibt den Wert des [*Filters*](#class-filter) zurück. Doublewerte werden hier als String zurückgegeben|
+|*String*|*getMethod()*|Gibt die Filtermethode des [*Filters*](#class-filter) zurück. Bei einem Textfilter wird als Methode ein leerer String zurückgegeben.|
+|*String*|*getType()*|Gibt den Typ des [*Filters*](#class-filter) zurück, also ob es sich bei dem gespeicherten Wert um eine *"String"* oder *"Double"* handelt|
 
 ### interface InseratComposite
 *public interface InseratComposite*
+
+Diese Klasse ist das Interface, welches von den Klassen [*Inserat*](#class-inserat) und [*InseratContainer*](#class-inseratcontainer) als Teil des *Composite*-Musters implementiert wird.
 
 #### Methoden
 |Modifier and Type|Methode|
@@ -113,6 +119,8 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 
 ### class Inserat
 *public class Inserat implements InseratComposite*
+
+Diese Klasse repräsentiert ein Inserat und nutzt unteranderem Funktionen der Klasse [*Helper*](#class-helper).
 
 #### Variablen
 |Modifier and Type|Name|
@@ -126,7 +134,7 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 #### Methoden
 |Modifier and Type|Methode|Beschreibung|
 |:---|:---|:---|
-|*static HashMap<String,String>*|*getErlaubteEigenschaften()*|Diese Funktion gibt eine Hashmap aller erlaubten Eigenschaften/Filter zurück. Dabei ist der Key der Name der Eigenschaft und der Wert der Typ der jeweiligen Eigenschaft, also "String" oder "Double".|
+|*static HashMap<String,String>*|*getErlaubteEigenschaften()*|Diese Funktion gibt eine Hashmap aller erlaubten [*Eigenschaften*](#class-eigenschaft) zurück. Dabei ist der Key der Name der [*Eigenschaft*](#class-eigenschaft) und der Wert der jeweilige Typ, also "String" oder "Double".|
 |*void*|*add([*Rundgang*](#class-rundgang) rundgang)*|Fügt dem [*Inserat*](#class-inserat) den in *rundgang* übergebenen [*Rundgang*](#class-rundgang) hinzu.|
 |*void*|*removeRundgang()*|Entfernt den [*Rundgang*](#class-rundgang) des [*Inserat*](#class-inserat).|
 |*void*|*add([*Bild*](#class-bild) ... bilder)*|Fügt dem [*Inserat*](#class-inserat) alle in *bilder* übergebenen [*Bilder*](#class-bild) hinzu.|
@@ -148,6 +156,8 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 ### class InseratContainer
 *public class Inserat implements InseratComposite*
 
+Diese Klasse stellt einen Container bereit, dem beliebig viele [*InseratComposites*](#interface-inseratcomposite), also [*Inserate*](#class-inserat) und [*InseratContainer*](#class-inseratcontainer), hinzugefügt werden können. Sie nutzt auch einige Funktionen der Klasse [*Helper*](#class-helper).
+
 #### Variablen
 |Modifier and Type|Name|
 |:---|:---|
@@ -165,11 +175,13 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 |*void*|*remove([*InseratComposite*](#interface-inseratcomposite) inserat)*|Entfernt dem [*InseratContainer*](#class-inseratcontainer) das in *inserat* übergebene [*InseratComposite*](#interface-inseratcomposite), wenn es exsistiert.|
 |*void*|*print()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) auf der Konsole aus.|
 |*void*|*print(Integer level)*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) auf der Konsole aus, jedoch mit einem padding entsprechned dem in *level* übergebenen Wert.|
-|*[*InseratContainer*](#class-inseratcontainer)*|*suche([*Filter*](#class-filter)... filter)*|Durchsucht alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) nach den [*Inseraten*](#class-inserat), die alle in *filter* übergebenen [*Filter*](#class-filter) erfüllen. Bei fehlerhaften oder üngültigen Filtern wird eine entsprechende Nachricht in der Konsole ausgegeben und der Filtervorgang abgebrochen.|
+|*[*InseratContainer*](#class-inseratcontainer)*|*suche([*Filter*](#class-filter)... filter)*|Durchsucht alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) nach den [*Inseraten*](#class-inserat), die alle in *filter* übergebenen [*Filter*](#class-filter) erfüllen. Bei fehlerhaften oder ungültigen [*Filtern*](#class-filter) wird eine entsprechende Nachricht in der Konsole ausgegeben und der Filtervorgang abgebrochen.|
 |*Double*|*getPreis()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt den Gesamtpreis aller im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) zurück.|
 
 ### class Modellmoebel
 *public class Modellmoebel*
+
+Diese Klasse stellt ein Möbelstück dar, welches einem [*Rundgang*](#class-rundgang) hinzugefügt werden kann. Sie nutzt einige Funktionen der Klasse [*Helper*](#class-helper).
 
 #### Variablen
 |Modifier and Type|Name|
@@ -191,6 +203,8 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 ### class Rundgang
 *public class Rundgang*
 
+Diese Klasse stellt einen Rundgang dar, der unteranderem einem [*Inserat*](#class-inserat) hinzugefügt werden kann. Sie nutzt Funktionen der Klasse [*Helper*](#class-helper)
+
 #### Variablen
 |Modifier and Type|Name|
 |:---|:---|
@@ -211,6 +225,8 @@ Diese Klasse nutzt Funktionen der Klasse [*Helper*](#class-helper)
 
 ### class Standort
 *public class Standort*
+
+Diese Klasse repräsentiert einen Standort.
 
 #### Variablen
 |Modifier and Type|Name|
