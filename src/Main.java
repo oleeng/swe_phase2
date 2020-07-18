@@ -2,12 +2,12 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) {
-        InseratContainer InserateContainer = new InseratContainer("Container");
+        InseratContainer Container = new InseratContainer("Container");
         InseratContainer OberklasseHaus = new InseratContainer("Häuser");
         InseratContainer OberklasseWohnung = new InseratContainer("Wohnungen");
         InseratContainer OberklasseBungalow = new InseratContainer("Bungalows");
 
-        InserateContainer.add(OberklasseHaus, OberklasseWohnung, OberklasseBungalow);
+        Container.add(OberklasseHaus, OberklasseWohnung, OberklasseBungalow);
 
         Inserat inserat1 = new Inserat("Helle Wohnung in Berlin", new Standort("Deutschland", "NRW", "Berlin", "10629", "Mommsenstraße 5"), 500.0, "Wohnung", "mieten");
         inserat1.add(
@@ -29,13 +29,13 @@ public class Main {
 
         OberklasseWohnung.add(inserat1, inserat2, haus1);
 
-        InserateContainer.remove(haus1);
+        Container.remove(haus1);
 
-        InserateContainer.print();
+        Container.print();
 
-        System.out.println(InserateContainer.getPreis()+"€");
+        System.out.println(Container.getPreis()+"€");
 
-        InseratContainer suchergebnisse = InserateContainer.suche(
+        InseratContainer suchergebnisse = Container.suche(
                 new Filter("Stadt", "Berlin"),
                 new Filter("Größe", 80.0, "min"),
                 new Filter("Größe", 150.0, "max"),
