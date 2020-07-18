@@ -145,6 +145,7 @@ Diese Klasse repräsentiert ein Inserat und nutzt unteranderem Funktionen der Kl
 |*String*|*getBeschreibung()*|Gibt die Beschreibung des [*Inserats*](#class-inserat) zurück|
 |*[*Standort*](#class-standort)*|*getStandort()*|Gibt den [*Standort*](#class-standort) des [*Inserats*](#class-inserat) zurück|
 |*void*|*starteRundgang()*|Startet den [*Rundgang*](#class-Rundgang) des [*Inserats*](#class-inserat).|
+|*[*Rundgang*](#class-Rundgang)*|*getRundgang()*|Gibt den [*Rundgang*](#class-Rundgang) des [*Inserats*](#class-inserat) zurück.|
 |*void*|*printBilder()*|Ruft für jedes [*Bild*](#class-bild) des [*Inserats*](#class-inserat) die *print()* Funktion auf.|
 |*void*|*zeigeBilder()*|Ruft für jedes [*Bild*](#class-bild) des [*Inserats*](#class-inserat) die *anzeigen()* Funktion auf.|
 |*String*|*getEigenschaft(String name)*|Gibt den Wert der [*Eigenschaft*](#class-eigenschaft) mit dem Namen *name* des [*Inserats*](#class-inserat) zurück. Falls das [*Inserat*](#class-inserat) diese [*Eigenschaft*](#class-eigenschaft) nicht besitzt wird *null* zurückgegeben.|
@@ -172,7 +173,8 @@ Diese Klasse stellt einen Container bereit, dem beliebig viele [*InseratComposit
 |:---|:---|:---|
 |*void*|*add([*InseratComposite*](#interface-inseratcomposite)... inserate)*|Fügt dem [*InseratContainer*](#class-inseratcontainer) alle in *inserate* übergebenen [*InseratComposite*](#interface-inseratcomposite) hinzu.|
 |*void*|*add(ArrayList<[*InseratComposite*](#interface-inseratcomposite)> inserate)*|Fügt dem [*InseratContainer*](#class-inseratcontainer) alle in *inserate* übergebenen [*InseratComposite*](#interface-inseratcomposite) hinzu.|
-|*void*|*remove([*InseratComposite*](#interface-inseratcomposite) inserat)*|Entfernt dem [*InseratContainer*](#class-inseratcontainer) das in *inserat* übergebene [*InseratComposite*](#interface-inseratcomposite), wenn es exsistiert.|
+|*void*|*remove([*InseratComposite*](#interface-inseratcomposite)... inserate)*|Entfernt dem [*InseratContainer*](#class-inseratcontainer) das in *inserat* übergebene [*InseratComposite*](#interface-inseratcomposite), wenn es exsistiert.|
+|*[*InseratComposite*](#interface-inseratcomposite)*|*get(Integer number)*|Gibt das [*InseratComposite*](#interface-inseratcomposite) mit dem Index *number* zurück oder *null* wenn *number* außerhalb des Indexbereiches liegt.
 |*void*|*print()*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) auf der Konsole aus.|
 |*void*|*print(Integer level)*|Dies ist eine Funktion des implementierten Interfaces [*InseratComposite*](#interface-inseratcomposite). Sie gibt alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) auf der Konsole aus, jedoch mit einem padding entsprechned dem in *level* übergebenen Wert.|
 |*[*InseratContainer*](#class-inseratcontainer)*|*suche([*Filter*](#class-filter)... filter)*|Durchsucht alle im [*InseratContainer*](#class-inseratcontainer) enthaltenen [*InseratComposite*](#interface-inseratcomposite) nach den [*Inseraten*](#class-inserat), die alle in *filter* übergebenen [*Filter*](#class-filter) erfüllen. Bei fehlerhaften oder ungültigen [*Filtern*](#class-filter) wird eine entsprechende Nachricht in der Konsole ausgegeben und der Filtervorgang abgebrochen.|
