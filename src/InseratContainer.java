@@ -17,17 +17,23 @@ public class InseratContainer implements InseratComposite {
         this.inserateComposite.addAll(Arrays.asList(inserate));
     }
 
-    public void add(ArrayList<Inserat> inserate){
+    public void add(ArrayList<InseratComposite> inserate){
         this.inserateComposite.addAll(inserate);
     }
 
-    public boolean remove(InseratComposite inserat){
+    public void remove(InseratComposite... inserate){
+        for(InseratComposite i:inserate){
+            removeIntern(i);
+        }
+    }
+
+    private boolean removeIntern(InseratComposite inserat){
         boolean found = false;
         if(!inserateComposite.remove(inserat)){
             // inserat kannte in der Liste nicht gefunden werden
             for(InseratComposite i: inserateComposite){
                 if(i instanceof InseratContainer){
-                    if(((InseratContainer) i).remove(inserat)){
+                    if(((InseratContainer) i).removeIntern(inserat)){
                         found = true;
                         break;
                     }
@@ -40,6 +46,16 @@ public class InseratContainer implements InseratComposite {
         return found;
     }
 
+    public InseratComposite get(Integer number){
+        number --;
+        if(number < inserateComposite.size() && number >= 0){
+            return inserateComposite.get(number);
+        }else{
+            System.out.println("Insexnumber ist außerhalb des erlaubten Bereichs!");
+            return null;
+        }
+    }
+
     @Override
     public void print(){
         print(0);
@@ -47,17 +63,19 @@ public class InseratContainer implements InseratComposite {
 
     @Override
     public void print(Integer level) {
+        System.out.println(Helper.padding("-", level)+"Inseratcontainer: "+this.name);
+        Integer count = 1;
         for (InseratComposite inserat: inserateComposite){
-            if(inserat instanceof InseratContainer){
-                System.out.println(Helper.padding("-", level)+"Inseratcontainer: "+((InseratContainer) inserat).name);
+            if(this.name.equals("Suchergebnisse")){
+                System.out.println(Helper.padding(" ", level+1)+"Suchergebnis #"+count);
+                count++;
             }
             inserat.print(level+1);
         }
     }
 
     public InseratContainer suche(Filter... filter){
-        //InseratContainer ergebnisse = new InseratContainer("Suchergebnisse");
-        ArrayList<Inserat> ergebnisse = sucheIntern(filter);
+        ArrayList<InseratComposite> ergebnisse = sucheIntern(filter);
         if(ergebnisse == null){
             return null;
         }else{
@@ -67,13 +85,13 @@ public class InseratContainer implements InseratComposite {
         }
     }
 
-    private ArrayList<Inserat> sucheIntern(Filter... filter){
-        ArrayList<Inserat> ergebnisse = new ArrayList<>();
+    private ArrayList<InseratComposite> sucheIntern(Filter... filter){
+        ArrayList<InseratComposite> ergebnisse = new ArrayList<>();
 
         for (InseratComposite inserat: inserateComposite){
-            if( inserat instanceof InseratContainer){
+            if(inserat instanceof InseratContainer){
                 // inserat ist kein Inserat sondern ein Container
-                ArrayList<Inserat> tmp = ((InseratContainer) inserat).sucheIntern(filter);
+                ArrayList<InseratComposite> tmp = ((InseratContainer) inserat).sucheIntern(filter);
                 if(tmp == null){
                     return null;
                 }
@@ -109,7 +127,7 @@ public class InseratContainer implements InseratComposite {
                 }
 
                 if(erfuelltFilter){
-                    ergebnisse.add((Inserat) inserat);
+                    ergebnisse.add(inserat);
                 }
             }
         }

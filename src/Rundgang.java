@@ -4,12 +4,10 @@ import java.util.Arrays;
 public class Rundgang {
     private String id;
     private String audiokommentar;
-    private String dimensionen;
     private ArrayList<Modellmoebel> moebel = new ArrayList<Modellmoebel>();
 
-    public Rundgang(String audiokommentar, String dimensionen){
+    public Rundgang(String audiokommentar){
         this.audiokommentar = audiokommentar;
-        this.dimensionen = dimensionen;
         this.id = Helper.genId();
     }
 
@@ -20,10 +18,6 @@ public class Rundgang {
     public void playAudiokommentar(){
         System.out.println("Gebe den Audiokommentar wieder...");
         System.out.println(audiokommentar);
-    }
-
-    public String getDimensionen() {
-        return dimensionen;
     }
 
     public void starteRundgang() {

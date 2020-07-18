@@ -26,6 +26,12 @@ public class Inserat implements InseratComposite{
 
         erlaubteEigenschaften.put("Typ", new EigenschaftObj(false, true, "String"));
         erlaubteEigenschaften.put("Wohnart", new EigenschaftObj(false, true, "String"));
+
+        erlaubteEigenschaften.put("Etage", new EigenschaftObj(true, false, "Double"));
+        erlaubteEigenschaften.put("Haustiere", new EigenschaftObj(true, false, "String"));
+        erlaubteEigenschaften.put("Einbauküche", new EigenschaftObj(true, false, "String"));
+        erlaubteEigenschaften.put("Baujahr", new EigenschaftObj(true, false, "Double"));
+        erlaubteEigenschaften.put("Garten", new EigenschaftObj(true, false, "String"));
     }
 
     private static class EigenschaftObj{
@@ -107,7 +113,7 @@ public class Inserat implements InseratComposite{
                 if(tmp.getType().equals(e.getType()) && tmp.isVeraenderlich()){
                     this.eigenschaften.put(e.getName(), e.getValue());
                 }else{
-                    System.out.println("Die Eigenschaft "+e.getName()+" ist nicht veränderlich...");
+                    System.out.println("Die Eigenschaft "+e.getName()+" ist nicht veränderlich oder vom falschen Typ...");
                 }
             }else{
                 System.out.println("Die Eigenschaft "+e.getName()+" ist nicht erlaubt...");
@@ -146,6 +152,10 @@ public class Inserat implements InseratComposite{
         }else{
             this.rundgang.starteRundgang();
         }
+    }
+
+    public Rundgang getRundgang() {
+        return rundgang;
     }
 
     public void printBilder(){
