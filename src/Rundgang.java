@@ -31,7 +31,7 @@ public class Rundgang {
     }
     //Ausgabe der Lister aller in dem Raum virtuell platzierten Möbel
     public void printAllMoebel(){
-        System.out.println("In der Immobile befinden sich aktuell folgende MГ¶bel.....");
+        System.out.println("In der Immobile befinden sich aktuell folgende Möbel.....");
         for (Modellmoebel m : moebel) {
             m.print();
         }

@@ -13,7 +13,7 @@ public class Helper {
     
 	//Generieren von einer zufälligen ID 
 	public static String genId(){
-        // erzeuge einen zufГ¤lligen 64 Zeichen langen ID-String
+        // erzeuge einen zufälligen 64 Zeichen lange ID-String
         String tmp = "";
         for(int i = 0; i < 64; i++){
             // r liegt zwischen 0 und 61 da 0<= Math.random<1
@@ -36,8 +36,9 @@ public class Helper {
     }
     //Padding für bessere Formatierung der Ausgabe 
     public static String padding(String string, Integer count){
-        return string.repeat (count);
+        return string.repeat(count);
     }
+
     //Ausgabe von einer Datei
     public static void printFile(String path){
         try{

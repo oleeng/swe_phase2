@@ -137,6 +137,7 @@ public class InseratContainer implements InseratComposite {
         }
         return ergebnisse;
     }
+
     //Filterung basierend auf der Anwesenheit der Eigentschaften
     private int stringFilter(String a, Filter f){
         if(a.equals(f.getValue())){
@@ -144,6 +145,7 @@ public class InseratContainer implements InseratComposite {
         }
         return 0;
     }
+
     //Filterung mit Angabe von min/max Grenze der Eigentschaft
     private int zahlFilter(Double a, Filter f){
         if(a == null){
@@ -164,6 +166,7 @@ public class InseratContainer implements InseratComposite {
         }
         return 1;
     }
+
     //Delegieren der Methode von Preisermittlung an Inserat und Summieren der Preise aller Inserate
     @Override
     public Double getPreis() {

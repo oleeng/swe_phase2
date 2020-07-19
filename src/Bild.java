@@ -21,12 +21,12 @@ public class Bild {
         }
         this.dateiformat = path.substring(path.lastIndexOf(".")+1).toLowerCase();
         if(!Arrays.asList(validFileTypes).contains(dateiformat)){
-            throw new FileNotFoundException("Der Dateityp ."+dateiformat+" ist nicht erlaubt! Nur "+Arrays.toString(validFileTypes)+" sind gГјltige Dateitypen.");
+            throw new FileNotFoundException("Der Dateityp ."+dateiformat+" ist nicht erlaubt! Nur "+Arrays.toString(validFileTypes)+" sind gültige Dateitypen.");
         }
         this.dateigroesse = (int)f.length();
         this.beschreibung = beschreibung;
         this.path = f.getAbsolutePath();
-        this.id = Helper.genId();             
+        this.id = Helper.genId();
     }
 
     public String getId() {
@@ -55,7 +55,7 @@ public class Bild {
         System.out.println("|Id: "+this.id);
         System.out.println("|Dateiformat: "+this.dateiformat);
         System.out.println("|Path: "+this.path);
-        System.out.println("|DateigrГ¶Гџe: "+this.dateigroesse+" Byte");
+        System.out.println("|Dateigröße: "+this.dateigroesse+" Byte");
         System.out.println("|Beschreibung: "+this.beschreibung);
         System.out.println("+------------------------------");
     }

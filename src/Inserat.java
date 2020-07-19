@@ -22,7 +22,7 @@ public class Inserat implements InseratComposite{
         erlaubteEigenschaften.put("Bundesland", new EigenschaftObj(false, true, "String"));
         erlaubteEigenschaften.put("PLZ", new EigenschaftObj(false, true, "String"));
         erlaubteEigenschaften.put("Stadt", new EigenschaftObj(false, true, "String"));
-        erlaubteEigenschaften.put("StraГџe", new EigenschaftObj(false, true, "String"));
+        erlaubteEigenschaften.put("Straße", new EigenschaftObj(false, true, "String"));
         erlaubteEigenschaften.put("Preis", new EigenschaftObj(true, true, "Double"));
         erlaubteEigenschaften.put("Größe", new EigenschaftObj(true, false, "Double"));
         erlaubteEigenschaften.put("Zimmerzahl", new EigenschaftObj(true, false, "Double"));
@@ -32,10 +32,11 @@ public class Inserat implements InseratComposite{
 
         erlaubteEigenschaften.put("Etage", new EigenschaftObj(true, false, "Double"));
         erlaubteEigenschaften.put("Haustiere", new EigenschaftObj(true, false, "String"));
-        erlaubteEigenschaften.put("EinbaukГјche", new EigenschaftObj(true, false, "String"));
+        erlaubteEigenschaften.put("Einbauküche", new EigenschaftObj(true, false, "String"));
         erlaubteEigenschaften.put("Baujahr", new EigenschaftObj(true, false, "Double"));
         erlaubteEigenschaften.put("Garten", new EigenschaftObj(true, false, "String"));
     }
+
     //Interene Klasse um eine Eigenscahft mit ihren Attributen zusammen zu speichern 
     private static class EigenschaftObj{
         private boolean veraenderlich;
@@ -56,7 +57,7 @@ public class Inserat implements InseratComposite{
             return veraenderlich;
         }
 
-        public boolean isPflich() {
+        public boolean isPflicht() {
             return pflicht;
         }
     }
@@ -80,7 +81,7 @@ public class Inserat implements InseratComposite{
         eigenschaften.put("Bundesland", standort.getBundesland());
         eigenschaften.put("PLZ", standort.getPLZ());
         eigenschaften.put("Stadt", standort.getStadt());
-        eigenschaften.put("StraГџe", standort.getStrasse());
+        eigenschaften.put("Straße", standort.getStrasse());
 
         if(!Arrays.asList(erlaubeImmArt).contains(immobielenart)){
             immobielenart = "nicht bekannt";
@@ -116,7 +117,7 @@ public class Inserat implements InseratComposite{
                 if(tmp.getType().equals(e.getType()) && tmp.isVeraenderlich()){
                     this.eigenschaften.put(e.getName(), e.getValue());
                 }else{
-                    System.out.println("Die Eigenschaft "+e.getName()+" ist nicht verГ¤nderlich oder vom falschen Typ...");
+                    System.out.println("Die Eigenschaft "+e.getName()+" ist nicht veränderlich oder vom falschen Typ...");
                 }
             }else{
                 System.out.println("Die Eigenschaft "+e.getName()+" ist nicht erlaubt...");
@@ -128,8 +129,8 @@ public class Inserat implements InseratComposite{
         for (String s:names){
             EigenschaftObj tmp = this.erlaubteEigenschaften.get(s);
             if(tmp != null){
-                if(tmp.isPflich()){
-                    System.out.println("Du kannst die Eigenschaft "+s+" nicht lГ¶schen...");
+                if(tmp.isPflicht()){
+                    System.out.println("Du kannst die Eigenschaft "+s+" nicht löschen...");
                 }else{
                     eigenschaften.remove(s);
                 }
@@ -151,7 +152,7 @@ public class Inserat implements InseratComposite{
 
     public void starteRundgang(){
         if(this.rundgang == null) {
-            System.out.println("kein Rundgang verfГјgbar...");
+            System.out.println("kein Rundgang verfügbar...");
         }else{
             this.rundgang.starteRundgang();
         }
@@ -160,6 +161,7 @@ public class Inserat implements InseratComposite{
     public Rundgang getRundgang() {
         return rundgang;
     }
+
     //Ausgabe der Infos über vorhandene Bilder
     public void printBilder(){
         if(bilder.isEmpty()){

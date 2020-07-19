@@ -14,9 +14,9 @@ public class Modellmoebel {
     //Ausgabe der Informationen über Möbelstück
     public void print(){
         System.out.println("+-----------------------------------------------");
-        System.out.println("|MГ¶bel-ID: "+id);
+        System.out.println("|Möbel-ID: "+id);
         System.out.println("|Beschreibung: "+beschreibung);
-        System.out.println("|GrГ¶Гџe: "+groesse);
+        System.out.println("|Größe: "+groesse);
         System.out.println("+-----------------------------------------------");
     }
 
