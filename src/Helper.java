@@ -13,7 +13,7 @@ public class Helper {
     
 	//Generieren von einer zufälligen ID 
 	public static String genId(){
-        // erzeuge einen zufälligen 64 Zeichen lange ID-String
+        // erzeuge einen zufälligen 64 Zeichen langen ID-String
         String tmp = "";
         for(int i = 0; i < 64; i++){
             // r liegt zwischen 0 und 61 da 0<= Math.random<1
