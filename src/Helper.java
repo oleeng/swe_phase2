@@ -36,7 +36,11 @@ public class Helper {
     }
     //Padding für bessere Formatierung der Ausgabe 
     public static String padding(String string, Integer count){
-        return string.repeat(count);
+	    String s = "";
+	    for(int i = 0; i < count; i++){
+	        s += string;
+        }
+        return s;
     }
 
     //Ausgabe von einer Datei

@@ -53,7 +53,7 @@ public class Standort {
         URL url = null;
         try {
         	// URL für den API-endpoint
-            String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, StandardCharsets.UTF_8)+"&ci="+URLEncoder.encode(stadt, StandardCharsets.UTF_8)+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, StandardCharsets.UTF_8)+"&nocmp=1&nocp=1&nodot=1&w=240&z="+zoom+"&zi="+URLEncoder.encode(plz, StandardCharsets.UTF_8)+"&style=dreamworks";
+            String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, "UTF-8")+"&ci="+URLEncoder.encode(stadt, "UTF-8")+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, "UTF-8")+"&nocmp=1&nocp=1&nodot=1&w=240&z="+zoom+"&zi="+URLEncoder.encode(plz, "UTF-8")+"&style=dreamworks";
             url = new URL(tmp);
             BufferedImage img = ImageIO.read(url);
             
