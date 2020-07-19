@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+// Diese Klasse umfasst die Attribute und Funktionalitäten eines Standorts 
+
 public class Standort {
     private String land;
     private String bundesland;
@@ -44,16 +46,18 @@ public class Standort {
     }
 
     public void printKarte(int zoom){
-        //ideal zoom level is 14 or 15
+        //Ideales zoom level ist 14 or 15
         if(zoom < 0 || zoom > 20){
             System.out.println("Invalid zoom: "+zoom+" (value must be between 0 and 20)");
         }
         URL url = null;
         try {
+        	// Erzeugen des Links für die Karte basierend auf den codierten Attributen des Standorts
             String tmp = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=4t-sIBgXFePm5Azm8eAj1GxpbfvTMyRsnicw61CI1W8&co="+URLEncoder.encode(land, StandardCharsets.UTF_8)+"&ci="+URLEncoder.encode(stadt, StandardCharsets.UTF_8)+"&f=0&h=120&i=0&s="+URLEncoder.encode(strasse, StandardCharsets.UTF_8)+"&nocmp=1&nocp=1&nodot=1&w=240&z="+zoom+"&zi="+URLEncoder.encode(plz, StandardCharsets.UTF_8)+"&style=dreamworks";
             url = new URL(tmp);
             BufferedImage img = ImageIO.read(url);
-
+            
+            // Generieren des Karte-Bilds aus originalem Bild mit dem Brailleschrift
             int centerX = img.getWidth()/2;
             centerX -= (centerX%2);
             int centerY = img.getHeight()/2;

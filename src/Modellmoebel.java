@@ -1,3 +1,6 @@
+
+//Diese Klasse umfasst die Attribute und Funktionalitäten einer Möbel-Modell 
+
 public class Modellmoebel {
     private String id;
     private String beschreibung;
@@ -8,12 +11,12 @@ public class Modellmoebel {
         this.groesse = groesse;
         this.id = Helper.genId();
     }
-
+    //Ausgabe der Informationen über Möbelstück
     public void print(){
         System.out.println("+-----------------------------------------------");
-        System.out.println("|Möbel-ID: "+id);
+        System.out.println("|MГ¶bel-ID: "+id);
         System.out.println("|Beschreibung: "+beschreibung);
-        System.out.println("|Größe: "+groesse);
+        System.out.println("|GrГ¶Гџe: "+groesse);
         System.out.println("+-----------------------------------------------");
     }
 

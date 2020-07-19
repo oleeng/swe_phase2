@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+// Diese Klasse ist ein Composite - Inserat-Container, das zu Speicherung von 
+// Inseraten und Implementierung der Funktionen zu ihrer Steuerung benutzt wird
+
 public class InseratContainer implements InseratComposite {
     private String name;
     private ArrayList<InseratComposite> inserateComposite = new ArrayList<>();
@@ -30,7 +33,7 @@ public class InseratContainer implements InseratComposite {
     private boolean removeIntern(InseratComposite inserat){
         boolean found = false;
         if(!inserateComposite.remove(inserat)){
-            // inserat kannte in der Liste nicht gefunden werden
+            // Inserat konnte in der Liste nicht gefunden werden
             for(InseratComposite i: inserateComposite){
                 if(i instanceof InseratContainer){
                     if(((InseratContainer) i).removeIntern(inserat)){
@@ -40,7 +43,7 @@ public class InseratContainer implements InseratComposite {
                 }
             }
         }else{
-            // inserat konnte gelöscht werden
+            // Inserat konnte gelöscht werden
             found = true;
         }
         return found;
@@ -51,7 +54,7 @@ public class InseratContainer implements InseratComposite {
         if(number < inserateComposite.size() && number >= 0){
             return inserateComposite.get(number);
         }else{
-            System.out.println("Insexnumber ist außerhalb des erlaubten Bereichs!");
+            System.out.println("Indexnumber ist außerhalb des erlaubten Bereichs!");
             return null;
         }
     }
@@ -74,6 +77,7 @@ public class InseratContainer implements InseratComposite {
         }
     }
 
+    //Suche der Inseraten unter Berücksichtigung der Filter
     public InseratContainer suche(Filter... filter){
         ArrayList<InseratComposite> ergebnisse = sucheIntern(filter);
         if(ergebnisse == null){
@@ -90,14 +94,14 @@ public class InseratContainer implements InseratComposite {
 
         for (InseratComposite inserat: inserateComposite){
             if(inserat instanceof InseratContainer){
-                // inserat ist kein Inserat sondern ein Container
+                // Inserat ist kein Inserat sondern ein Container
                 ArrayList<InseratComposite> tmp = ((InseratContainer) inserat).sucheIntern(filter);
                 if(tmp == null){
                     return null;
                 }
                 ergebnisse.addAll(tmp);
             }else{
-                // inserat ist ein einzelnes Inserat
+                // Inserat ist ein einzelnes Inserat
                 Inserat i = (Inserat) inserat;
                 boolean erfuelltFilter = true;
                 int status;
@@ -133,14 +137,14 @@ public class InseratContainer implements InseratComposite {
         }
         return ergebnisse;
     }
-
+    //Filterung basierend auf der Anwesenheit der Eigentschaften
     private int stringFilter(String a, Filter f){
         if(a.equals(f.getValue())){
             return 1;
         }
         return 0;
     }
-
+    //Filterung mit Angabe von min/max Grenze der Eigentschaft
     private int zahlFilter(Double a, Filter f){
         if(a == null){
             return 0;
@@ -160,7 +164,7 @@ public class InseratContainer implements InseratComposite {
         }
         return 1;
     }
-
+    //Delegieren der Methode von Preisermittlung an Inserat und Summieren der Preise aller Inserate
     @Override
     public Double getPreis() {
         Double gesamtpreis = 0.0;

@@ -7,9 +7,13 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+//Diese Helper-Klasse implementiert von anderen Klassen benötigte Methoden
+
 public class Helper {
-    public static String genId(){
-        // erzeuge einen zufälligen 64 Zeichen langen ID-String
+    
+	//Generieren von einer zufälligen ID 
+	public static String genId(){
+        // erzeuge einen zufГ¤lligen 64 Zeichen langen ID-String
         String tmp = "";
         for(int i = 0; i < 64; i++){
             // r liegt zwischen 0 und 61 da 0<= Math.random<1
@@ -30,11 +34,11 @@ public class Helper {
         }
         return tmp;
     }
-
+    //Padding für bessere Formatierung der Ausgabe 
     public static String padding(String string, Integer count){
-        return string.repeat(count);
+        return string.repeat (count);
     }
-
+    //Ausgabe von einer Datei
     public static void printFile(String path){
         try{
             Scanner input = new Scanner(new File(Paths.get("").toAbsolutePath().toString()+"\\"+path));
@@ -46,7 +50,7 @@ public class Helper {
             System.out.println("Die Datei "+path+" existiert nicht...");
         }
     }
-
+    //Anzeigen von einem Bild mittels Brailleschrift
     public static void printImage(String path){
         try {
             BufferedImage img = ImageIO.read(new File(path));

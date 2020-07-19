@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Diese Klasse umfasst die Attribute und Funktionalitäten eines virtuellen Rundgangs
+
 public class Rundgang {
     private String id;
     private String audiokommentar;
@@ -27,9 +29,9 @@ public class Rundgang {
     public void addMoebel(Modellmoebel... moebelstueck){
         this.moebel.addAll(Arrays.asList(moebelstueck));
     }
-
+    //Ausgabe der Lister aller in dem Raum virtuell platzierten Möbel
     public void printAllMoebel(){
-        System.out.println("In der Immobile befinden sich aktuell folgende Möbel.....");
+        System.out.println("In der Immobile befinden sich aktuell folgende MГ¶bel.....");
         for (Modellmoebel m : moebel) {
             m.print();
         }

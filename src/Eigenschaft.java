@@ -1,3 +1,6 @@
+
+//Diese Klasse repräsentiert eine Eigenschaft des Inserates und umfasst entsprechende Attribute 
+
 public class Eigenschaft {
     private String name;
     private String value;

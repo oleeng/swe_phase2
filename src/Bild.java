@@ -2,11 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 
+//Diese Klasse repräsentiert ein Bild und umfasst entsprechende Attribute und Funktionalitäten 
+
 public class Bild {
-    /*
-    Die Klasse Bild repräsentiert ein Bild.
-    Ein Bild verfügt über eine id, eine Beschreibung, ein Dateiformat, einen Path und eine Größe in Bytes
-    */
+	
     private String id;
     private String beschreibung;
     private String dateiformat;
@@ -14,6 +13,7 @@ public class Bild {
     private Integer dateigroesse;
     private String[] validFileTypes = {"png", "jpg"};
 
+    //Erzeugen von einem Bild, wobei der Pfad und Dateityp auf Gültigkeit geprüft werden 
     public Bild(String beschreibung, String path) throws FileNotFoundException {
         File f = new File("src\\"+path);
         if(!f.exists() || !f.isFile()){
@@ -21,12 +21,12 @@ public class Bild {
         }
         this.dateiformat = path.substring(path.lastIndexOf(".")+1).toLowerCase();
         if(!Arrays.asList(validFileTypes).contains(dateiformat)){
-            throw new FileNotFoundException("Der Dateityp ."+dateiformat+" ist nicht erlaubt! Nur "+Arrays.toString(validFileTypes)+" sind gültige Dateitypen.");
+            throw new FileNotFoundException("Der Dateityp ."+dateiformat+" ist nicht erlaubt! Nur "+Arrays.toString(validFileTypes)+" sind gГјltige Dateitypen.");
         }
         this.dateigroesse = (int)f.length();
         this.beschreibung = beschreibung;
         this.path = f.getAbsolutePath();
-        this.id = Helper.genId();
+        this.id = Helper.genId();             
     }
 
     public String getId() {
@@ -48,13 +48,14 @@ public class Bild {
     public Integer getDateigroesse() {
         return this.dateigroesse;
     }
-
+    
+    //Ausgabe der Informationen über das Bild
     public void print(){
         System.out.println("+------------------------------");
         System.out.println("|Id: "+this.id);
         System.out.println("|Dateiformat: "+this.dateiformat);
         System.out.println("|Path: "+this.path);
-        System.out.println("|Dateigröße: "+this.dateigroesse+" Byte");
+        System.out.println("|DateigrГ¶Гџe: "+this.dateigroesse+" Byte");
         System.out.println("|Beschreibung: "+this.beschreibung);
         System.out.println("+------------------------------");
     }

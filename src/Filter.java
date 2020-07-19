@@ -1,3 +1,6 @@
+
+//Diese Klasse repräsentiert ein Filter, das bei der Suche angewendet werden kann, und umfasst entsprechende Attribute 
+
 public class Filter {
     private String name;
     private String value;
