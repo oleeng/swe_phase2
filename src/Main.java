@@ -12,7 +12,7 @@ public class Main {
 
         Container.add(OberklasseHaus, OberklasseWohnung, OberklasseBungalow);
 
-        System.out.println("Füge drei Inserate von jedem Typ hinzu...");
+        System.out.println("Füge zwei Inserate von jedem Typ hinzu...");
 
         Inserat wohnung1 = new Inserat("Helle Wohnung in Berlin", new Standort("Deutschland", "Berlin", "Berlin", "10179", "Stallschreiberstraße 27"), 1799.0, "Wohnung", "mieten");
         wohnung1.add(
