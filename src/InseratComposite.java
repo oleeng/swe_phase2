@@ -6,7 +6,7 @@ public interface InseratComposite {
 	 * und "Composite-Klasse" InseratContainer deklariert, da man so auf eine Leerimplementierung
 	 * innerhalb der jeweiligen Klasse verzichten kann. Daher wurden in der Mainklasse auch alle Objekte vom
 	 * Typ Inserat oder IneratContainer erstellt, da man sonst aufgrund der fehlenden Deklinierung der Methode
-	 * im Interface vor jeder Operation da Objekt es erst zum richten Typ casten müsste.
+	 * im Interface vor jeder Operation das Objekt erst zum richten Typ casten müsste.
 	 */
 	
 	public void print();
